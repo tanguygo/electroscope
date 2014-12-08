@@ -11,10 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141208145017) do
+ActiveRecord::Schema.define(version: 20141208162921) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "flats", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "street_number"
+    t.string   "route"
+    t.string   "locality"
+    t.string   "administrative_area_level_1"
+    t.string   "postal_code"
+    t.string   "country"
+    t.integer  "number_of_occupants"
+    t.float    "surface"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.float    "last_yearly_bill"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                       default: "", null: false
