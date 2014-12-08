@@ -1,11 +1,4 @@
 <% if user_signed_in? %>
-  <%= current_user.email %>
-  <%= link_to 'Sign out', destroy_user_session_path, method: 'delete' %>
-<% else %>
-  <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
-<% end %>*
-
-<% if user_signed_in? %>
   <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
       <% if current_user.provider %>
@@ -18,6 +11,10 @@
       <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
     </ul>
   </li>
+<% else %>
+  <%= link_to 'Inscrivez vous', new_user_registration_path %>
+  <%= link_to 'Identifiez vous', new_user_session_path %>
+  <%= link_to "Facebook login", user_omniauth_authorize_path(:facebook) %>
 <% end %>
 
 <h1>Bienvenue sur electroscope !
