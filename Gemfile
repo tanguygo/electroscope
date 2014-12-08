@@ -37,4 +37,8 @@ gem 'spring',        group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+# user management
+gem 'devise'
+# static pages management and routing
+gem 'high_voltage', '~> 2.2.1'
 
