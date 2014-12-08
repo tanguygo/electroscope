@@ -39,3 +39,13 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 # user management
 gem 'devise'
+# Devise with fb-omniauth extension
+gem 'omniauth-facebook'
+# For extended use of fb API (getting user's friends infos, posting on his wall..)
+gem 'koala'
+gem 'figaro'
+
+group :development do
+  gem "better_errors"
+  gem "binding_of_caller"
+end
