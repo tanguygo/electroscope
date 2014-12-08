@@ -1,11 +1,11 @@
 
 <div class="text-center" id="intro">
-  <h1>Consommez mieux, économisez, préservez l'environement</h1>
-  <h1>l'Electroscope</h1>
-  <p id="guide">Suivez le guide</p>
-  <a href="" class="big-arrow btn btn-primary" ><i class="fa fa-chevron-down"></i></a>
+  <h2>Consommez mieux, économisez, préservez l'environement</h2>
+  <h1>Découvrez l'Electroscope</h1>
+  <p id="guide">Suivez le guide.</p>
+  <a href="#story" class="big-arrow btn btn-primary scrollTo" ><i class="fa fa-chevron-down"></i></a>
 </div>
-<div class="story">
+<div id="story">
   <div id="timeline">
      <div class="scrollme cloud-left">
       <div
@@ -103,6 +103,18 @@
   <div class="info-panel-center">
     <h3>l'Electroscope</h3>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum atque doloribus quasi officia eum qui omnis consequatur facilis nulla corporis! Commodi autem iste, doloremque. Dolore doloribus nisi earum doloremque quia!</p>
-    <%= link_to("Commandez-votre boitier", "#" , class: "btn btn-success") %>
+    <%= link_to("Commandez votre boitier", "#" , class: "btn btn-success") %>
   </div>
 </div>
+
+<%= content_for(:js) do %>
+  <script>
+    $(document).ready(function() {
+      $('.scrollTo').click( function() {
+        var page = $(this).attr('href');
+        var speed = 1000;
+        $('html, body').animate( { scrollTop: $(page).offset().top }, speed ); // Go
+      });
+    });
+  </script>
+<% end %>

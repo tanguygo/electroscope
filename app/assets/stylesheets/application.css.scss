@@ -3,10 +3,25 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "index";
+@import "navbar";
+@import "footer";
 
 
 body {
   background-color: #3A91CD;
+  margin:0;
+  padding:0;
+  height: 100%;
+}
+
+#wrapper {
+  min-height:100%;
+  position:relative;
+}
+
+#content {
+  padding:10px;
+  padding-bottom:80px;
 }
 
 .navbar-default .navbar-nav > li > a {

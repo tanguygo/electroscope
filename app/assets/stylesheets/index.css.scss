@@ -25,6 +25,7 @@
   margin: auto;
   top : 700px;
   margin-bottom: 200px;
+  z-index: -1;
 }
 
 .timemarker {
@@ -36,6 +37,7 @@
   top: -10px;
   left: -10px;
   position: relative;
+  z-index: -1;
 }
 
 .marker-link-left, .marker-link-right {
@@ -46,7 +48,7 @@
   width: 167px;
   position: relative;
   top: -20px;
-  z-index: -1;
+  z-index: -2;
 }
 
 .marker-link-right {
@@ -80,7 +82,6 @@
   clear: both;
   border-radius: 5px;
   text-align: center;
-  position: absolute;
   left: 0;
   right: 0;
   margin: 40px auto;
@@ -88,7 +89,6 @@
 
 .cloud-left, .cloud-right {
   position: absolute;
-  z-index: -1;
 }
 
 .cloud-left {
