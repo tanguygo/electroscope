@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6">
+      <h1>Mes appareils</h1>
+      <h2>Mon appartement</h2>
+
+      <%= form_for(@flat) do |f| %>
+        <%= f.label :type %>
+        <%= f.radio_button :type, 'flat' %>
+        <%= f.label :type, 'Appartement', value: 'flat' %>
+        <%= f.radio_button :type, 'house' %>
+        <%= f.label :type, 'Maison', value: 'house' %>
+        <br>
+        <%= f.label :surface, 'Surface' %>
+        <%= f.range_field :surface, id: "slider-surface", value: 100, min: 0, max: 400 %>
+        <span id="surface-val">100</span> M2
+        <br>
+        <%= f.label :number_of_occupants, "Nombre d'habitants" %>
+        <%= f.range_field :surface, id: "slider-occupants", value: 2, min: 1, max: 20 %>
+        <span id="occupants-val">1</span> habitant(s)
+        <br>
+        <%= f.label :last_yearly_bill, "Montant de la dernière facture annuelle" %>
+        <%= f.number_field :last_yearly_bill %> €
+        <br>
+        <%= f.label :street_number, "Numéro" %>
+        <%= f.text_field :street_number %>
+        <br>
+        <%= f.label :route, "Rue" %>
+        <%= f.text_field :route %>
+        <br>
+        <%= f.label :locality, "Ville" %>
+        <%= f.text_field :locality %>
+        <%= f.hidden_field :administrative_area_level_1 %>
+        <br>
+        <%= f.label :postal_code, "Code Postal" %>
+        <%= f.text_field :postal_code %>
+        <br>
+        <%= f.label :country, "Pays" %>
+        <%= f.text_field :country %>
+        <br>
+        <%= f.submit "Enregistrer" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= content_for(:js) do %>
+  <script>
+    $(document).ready(function(){
+      $("#slider-surface").change(function () {
+         var newValue = $("#slider-surface").val();
+         $("#surface-val").html(newValue);
+      });
+      $("#slider-occupants").change(function () {
+          var newValue2 = $("#slider-occupants").val();
+          $("#occupants-val").html(newValue2);
+       });
+    });
+  </script>
+<% end %>
+
+
+
+
+
