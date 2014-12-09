@@ -20,9 +20,37 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+  <div class="field">
+    <%= f.label :first_name %>Prénom<br />
+    <%= f.email_field :first_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %>Prénom<br />
+    <%= f.email_field :last_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name %>Prénom<br />
+    <%= f.email_field :name, value:  %>
+  </div>
+
+      t.string   "last_name"
+    t.string   ""
+    t.string   "name"
+    t.date     "birthday"
+
+  <%= render 'address_form' %>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+<% content_for(:before_js) do%>
+<!-- Include Google Maps JS API -->
+<script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyBcspQQixZz4NDtZBMoVusFekhpc1eufAc"></script>
+<% end  %>
