@@ -21,24 +21,27 @@
   </div>
 
   <div class="field">
-    <%= f.label :first_name %>Prénom<br />
-    <%= f.email_field :first_name %>
+    <label class="">Titre</label>
+    <% options_for_select=[['Monsieur', 1], ['Madame', 2],  ['Mademoiselle', 3]] %>
+    <%= f.select(:civility, options_for_select) %>
   </div>
 
   <div class="field">
-    <%= f.label :last_name %>Prénom<br />
-    <%= f.email_field :last_name %>
+    <label class="">Prénom</label>
+    <%= f.text_field :first_name %>
   </div>
 
   <div class="field">
-    <%= f.label :name %>Prénom<br />
-    <%= f.email_field :name, value:  %>
+    <label class="">Nom de famille</label>
+    <%= f.text_field :last_name %>
   </div>
 
-      t.string   "last_name"
-    t.string   ""
-    t.string   "name"
-    t.date     "birthday"
+
+  <div class="field">
+   <label class="">Date de naissance</label>
+    <%= f.date_field :birthday %>
+  </div>
+
 
   <%= render 'address_form' %>
 
