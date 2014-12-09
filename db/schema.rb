@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141209135506) do
+ActiveRecord::Schema.define(version: 20141209152549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 20141209135506) do
     t.float    "avg_monthly_consumption_11"
     t.float    "avg_monthly_consumption_12"
     t.integer  "user_id"
+    t.string   "address_complement"
   end
 
   add_index "flats", ["user_id"], name: "index_flats_on_user_id", using: :btree
@@ -109,6 +110,7 @@ ActiveRecord::Schema.define(version: 20141209135506) do
     t.string   "administrative_area_level_1"
     t.string   "postal_code"
     t.string   "country"
+    t.string   "address_complement"
   end
 
   add_index "orders", ["box_id"], name: "index_orders_on_box_id", using: :btree
