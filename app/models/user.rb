@@ -3,10 +3,28 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   has_many :flats
   has_many :orders
-  #ajouter lien vers sponsorship !
+
+
+  def sponsor
+    s=Sponsorship.where(receiver_id:self.id).first
+    return s.giver if s
+  end
+
+  def sponsored
+    s=Sponsorship.where(giver_id:self.id)
+    if s
+      u=[]
+      s.each{|sponsorship|
+        u<<s.receiver
+      }
+      return u
+    end
+
+  end
+
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, :omniauth_providers => [ :facebook ]
 
   def self.find_for_facebook_oauth(auth)
