@@ -19,11 +19,16 @@
         <li><%= link_to "FAQ", "#" %></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Se connecter", "#" %></li>
-        <li><%= link_to "Facebook connect", "#" %></li>
-        <li><%= link_to "Créer un compte", "#", class: "btn btn-success" %></li>
-        <!-- <li><%= link_to "Se déconnecter", "#" %></li>
-        <li><%= link_to "Mon compte", "#" %></li> -->
+        <% if user_signed_in? %>
+          <li>Bienvenue <%= current_user.email %></li>
+          <li><%= link_to "Se déconnecter", destroy_user_session_path, method: :delete %></li>
+          <li><%= link_to "Mon compte", "#" %></li>
+        <% else %>
+          <li><%= link_to "Se connecter", new_user_session_path %></li>
+          <li><%= link_to "Facebook connect", user_omniauth_authorize_path(:facebook) %></li>
+          <li><%= link_to "Créer un compte", new_user_registration_path, class: "btn btn-success" %></li>
+        <% end %>
+
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
