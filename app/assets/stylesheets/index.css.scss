@@ -1,0 +1,119 @@
+.big-arrow {
+  font-size: 40px;
+  color: black;
+}
+
+#intro {
+  margin: 150px auto;
+}
+
+#guide {
+  margin: 35px auto 20px auto;
+  font-size: 20px;
+}
+
+#timeline {
+  position: absolute;
+  background-color: black;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 2px;
+  height: 1300px;
+  top : 20px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top : 700px;
+  margin-bottom: 200px;
+  z-index: -1;
+}
+
+.timemarker {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  border: 1px solid black;
+  background-color: white;
+  top: -10px;
+  left: -10px;
+  position: relative;
+  z-index: -1;
+}
+
+.marker-link-left, .marker-link-right {
+  background-color: black;
+  border: 1px solid black;
+  border-radius: 5px;
+  height: 2px;
+  width: 167px;
+  position: relative;
+  top: -20px;
+  z-index: -2;
+}
+
+.marker-link-right {
+  left: 0px;
+}
+
+.marker-link-left {
+  left: -167px;
+}
+
+.info-panel-left, .info-panel-right {
+  width: 27%;
+  min-height: 200px;
+  background-color: rgba(255, 255, 255, 0.5);
+  margin: auto 10%;
+  padding: 2%;
+  clear: both;
+  border-radius: 5px;
+}
+
+.info-panel-right {
+  float: right;
+}
+
+.info-panel-center {
+  width: 50%;
+  min-height: 200px;
+  background-color: rgba(255, 255, 255, 1);
+  margin: auto 10%;
+  padding: 70px 2%;
+  clear: both;
+  border-radius: 5px;
+  text-align: center;
+  left: 0;
+  right: 0;
+  margin: 40px auto;
+}
+
+.cloud-left, .cloud-right {
+  position: absolute;
+}
+
+.cloud-left {
+  left: -450px;
+}
+
+.cloud-right {
+  float: right;
+}
+
+.scrollme
+{
+  padding:2em;
+}
+
+.animateme
+{
+  width:80%;
+  padding:10%;
+  background:#e8e8e8;
+  transform-origin:center center center;
+}
+
+
+
+
+
+
