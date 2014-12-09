@@ -38,6 +38,7 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 # user management
+
 gem 'devise'
 # Devise with fb-omniauth extension
 gem 'omniauth-facebook'
