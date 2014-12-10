@@ -9,11 +9,11 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">1. Apprenez nous à vous connaître </h3>
+    <h3 class="panel-title">1. Faisons connaissance </h3>
   </div>
   <div class="panel-body">
 
-    <%= order_f.fields_for :user do |f| %>
+    <%= order_f.fields_for @user do |f| %>
 
     <div class="field">
       <label class="">Titre</label>
@@ -63,25 +63,23 @@
     <h3 class="panel-title">2. Affinez vos options</h3>
   </div>
   <div class="panel-body">
-    <div class="form-group">
 
-      <div class="field">
-        <label class="">Choix de l'offre</label>
-        <% options_for_select=[['Offre de base', 1]] %>
-        <%= order_f.select(:offer_id, options_for_select) %>
-      </div>
-
-
-      <label class="">Où livrer votre electroscope ?</label>
-      <div class="">
-        <input id="order_autocomplete_address" name="order_autocomplete_address"
-        class="form-control" placeholder="Start typing your address...">
-      </div>
+    <div class="field">
+      <label class="">Choix de l'offre</label>
+      <% options_for_select=[['Offre de base', 1]] %>
+      <%= order_f.select(:offer_id, options_for_select) %>
     </div>
+
+    <label class="">Où livrer votre electroscope ?</label>
+    <div class="field">
+      <%= order_f.label :address %><br />
+      <%= order_f.text_field :address, id:"order_autocomplete_address", placeholder:"Commencez à saisir votre adresse, google la complètera pour vous" %>
+    </div>
+
     <fieldset class="disabled hidden">
       <div class="field">
         <%= order_f.label :street_number %><br />
-          <%= order_f.text_field :street_number %>
+        <%= order_f.text_field :street_number %>
       </div>
       <div class="field">
         <%= order_f.label :route %><br />
@@ -124,19 +122,19 @@
   </div>
 </div>
 
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">3. Validez votre commande</h3>
-      </div>
-      <div class="panel-body">
-        <%= order_f.submit "Valider" %>
-      </div>
-    </div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">3. Validez votre commande</h3>
+  </div>
+  <div class="panel-body">
+    <%= order_f.submit "Valider" %>
+  </div>
+</div>
 
-    <% end %>
+<% end %>
 
-    <% content_for(:before_js) do%>
-    <!-- Include Google Maps JS API -->
-    <script type="text/javascript"
-    src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyBcspQQixZz4NDtZBMoVusFekhpc1eufAc"></script>
-    <% end  %>
+<% content_for(:before_js) do%>
+<!-- Include Google Maps JS API -->
+<script type="text/javascript"
+src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyBcspQQixZz4NDtZBMoVusFekhpc1eufAc"></script>
+<% end  %>
