@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141210151638) do
+ActiveRecord::Schema.define(version: 20141210161905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20141210151638) do
   add_index "box_sessions", ["flat_id"], name: "index_box_sessions_on_flat_id", using: :btree
 
   create_table "boxes", force: true do |t|
-    t.integer  "electroscope_id"
+    t.string   "electroscope_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "status"

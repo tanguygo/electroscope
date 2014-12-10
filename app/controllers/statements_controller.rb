@@ -3,10 +3,12 @@ class StatementsController < ApplicationController
     before_action :set_box_session, only: [:create_from_box]
 
       def index
+        @statements=Statement.all
 
       end
 
       def create_from_box
+
         @statement = Statement.new(statement_params)
         @statement.box_session=@box_session
         @statement.save
@@ -20,7 +22,7 @@ class StatementsController < ApplicationController
       end
 
       def statement_params
-        params.require(:statement).permit(:pulse,:power,:token,:time_of_measure)
+        params.permit(:pulse,:power,:time_of_measure)
       end
 
       def set_box_session
