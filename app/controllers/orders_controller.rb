@@ -22,7 +22,7 @@ class OrdersController < ApplicationController
         @order.user=@user
         @order.status = "ordered_no_payment"
         @order.creation_date = Time.now
-        if @order.save
+        if @order.save  #sauve l'utilisateur au passage
           sign_in(@user)
           redirect_to root_path
         else

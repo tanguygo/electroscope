@@ -58,3 +58,4 @@ gem 'bootstrap_form'
 
 gem 'rails_12factor', group: :production
 ruby '2.1.2'
+gem 'activeadmin', github: 'activeadmin'
