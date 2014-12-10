@@ -10,6 +10,7 @@ class StatementsController < ApplicationController
         @statement = Statement.new(statement_params)
         @statement.box_session=@box_session
         @statement.save
+        redirect_to statements_path
       end
 
       private
@@ -19,11 +20,10 @@ class StatementsController < ApplicationController
       end
 
       def statement_params
-        #user sera remplacé par token à terme, token étant lié à chaque electroscope
-        params.require(:statement).permit(:pulse,:power,:user,:time_of_measure)
+        params.require(:statement).permit(:pulse,:power,:token,:time_of_measure)
       end
 
       def set_box_session
-        @box_session = Box.find_by_token(params[:user]).box_sessions.last
+        @box_session = Box.find_by_token(params[:token]).box_sessions.last
       end
 end
