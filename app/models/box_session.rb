@@ -6,7 +6,4 @@ class BoxSession < ActiveRecord::Base
     return self.flat.user
   end
 
-  def sqf
-    p self
-  end
 end
