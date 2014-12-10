@@ -1,0 +1,25 @@
+<h1>Impulsions reçues</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Heure de la mesure</th>
+      <th>Pulse</th>
+      <th>Power</th>
+      <th>Numéro interne de l'électroscope</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @statements.each do |statement| %>
+      <tr>
+        <td><%= statement.time_of_measure %></td>
+        <td><%= statement.pulse %></td>
+        <td><%= statement.power %></td>
+        <td><%= statement.box_session.box.electroscope_id %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

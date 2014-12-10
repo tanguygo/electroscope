@@ -1,12 +1,15 @@
 class StatementsController < ApplicationController
     before_action :set_statement, only: [:show, :edit, :update]
+    before_action :set_box_session, only: [:create_from_box]
 
-      def new
-        @statement = Statement.new
+      def index
+
       end
 
-      def create
+      def create_from_box
         @statement = Statement.new(statement_params)
+        @statement.box_session=@box_session
+        @statement.save
       end
 
       private
@@ -16,10 +19,10 @@ class StatementsController < ApplicationController
       end
 
       def statement_params
-        params.require(:statement).permit(:pulse,:power,:user)
+        params.require(:statement).permit(:pulse,:power,:user,:time_of_measure)
       end
 
-      def set_box
-        @box = BoxSession.find(params[:user_id])
+      def set_box_session
+        @box_session = Box.find(params[:user]).box_sessions.last
       end
 end

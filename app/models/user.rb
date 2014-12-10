@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   has_many :flats
   has_many :orders
+  has_many :box_sessions, through: :flats
 
 
   def sponsor
