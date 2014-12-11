@@ -1,18 +1,11 @@
 ActiveAdmin.register DeviceType do
-
-
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # permit_params :list, :of, :attributes, :on, :model
-  #
-  # or
-  #
-  # permit_params do
-  #   permitted = [:permitted, :attributes]
-  #   permitted << :other if resource.something?
-  #   permitted
-  # end
+  permit_params :type, :avg_daily_consumption, :avg_monthly_consumption_01, :avg_yearly_consumption
+  # t.string   "type"
+  # t.float    "avg_daily_consumption"
+  # t.float    "avg_monthly_consumption_01"
+  # t.float    "avg_yearly_consumption"
+  # t.datetime "created_at"
+  # t.datetime "updated_at"
 
 
 end

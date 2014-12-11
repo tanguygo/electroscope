@@ -1,18 +1,10 @@
 ActiveAdmin.register Sponsorship do
-
-
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # permit_params :list, :of, :attributes, :on, :model
-  #
-  # or
-  #
-  # permit_params do
-  #   permitted = [:permitted, :attributes]
-  #   permitted << :other if resource.something?
-  #   permitted
-  # end
-
-
+  permit_params :giver_id,:receiver_id,:date,:status,:box_id
+    # t.integer  "giver_id"
+    # t.integer  "receiver_id"
+    # t.datetime "date"
+    # t.string   "status"
+    # t.integer  "box_id"
+    # t.datetime "created_at"
+    # t.datetime "updated_at"
 end

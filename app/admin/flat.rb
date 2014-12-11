@@ -1,18 +1,23 @@
 ActiveAdmin.register Flat do
+  permit_params :street_number, :route, :locality, :administrative_area_level_1, \
+  :postal_code, :country, :number_of_occupants,:surface,:latitude,:longitude,:last_yearly_bill,:user_id,:address_complement
 
 
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # permit_params :list, :of, :attributes, :on, :model
-  #
-  # or
-  #
-  # permit_params do
-  #   permitted = [:permitted, :attributes]
-  #   permitted << :other if resource.something?
-  #   permitted
-  # end
+  # t.datetime "created_at"
+  # t.datetime "updated_at"
+  # t.string   "street_number"
+  # t.string   "route"
+  # t.string   "locality"
+  # t.string   "administrative_area_level_1"
+  # t.string   "postal_code"
+  # t.string   "country"
+  # t.integer  "number_of_occupants"
+  # t.float    "surface"
+  # t.float    "latitude"
+  # t.float    "longitude"
+  # t.float    "last_yearly_bill"
+  # t.integer  "user_id"
+  # t.string   "address_complement"
 
 
 end

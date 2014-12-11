@@ -1,18 +1,13 @@
 ActiveAdmin.register Device do
 
+  permit_params :name, :devicetype_id, :flat_id
 
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # permit_params :list, :of, :attributes, :on, :model
-  #
-  # or
-  #
-  # permit_params do
-  #   permitted = [:permitted, :attributes]
-  #   permitted << :other if resource.something?
-  #   permitted
-  # end
 
+
+  # t.string   "name"
+  # t.integer  "devicetype_id"
+  # t.integer  "flat_id"
+  # t.datetime "created_at"
+  # t.datetime "updated_at"
 
 end
