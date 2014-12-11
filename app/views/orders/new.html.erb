@@ -35,7 +35,7 @@
     <div class="panel-body">
       <%= order_f.input :offer, collection: {'Offre de base'=> 1}, label: "Choix de l'offre" %>
       <%= order_f.input :address, label: "Où livrer votre electroscope ?", input_html: {class:"google-autocomplete",data:{prefix:"order_"}}, placeholder:"Commencez à saisir votre adresse, google la complètera pour vous" %>
-      <fieldset class="disabled">
+      <fieldset class="disabled hidden">
         <%= order_f.input :street_number %>
         <%= order_f.input :route %>
         <%= order_f.input :postal_code %>
