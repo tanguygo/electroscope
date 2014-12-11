@@ -27,3 +27,4 @@ function onPlaceChanged(that, prefix) {
 google.maps.event.addDomListener(window, 'load', function() {
   initializeAutocomplete('order_autocomplete_address',"order_");
 });
+

@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   resources :statements, only: [:index]
 
   root to: "pages#index"
+  resources :flats do
+    resources :devices, only:  [:index, :new, :create]
+    post "/devices/create_multiple", to: "devices#create_multiple"
+  end
   get "/:page", to: "pages#show"
 
 end

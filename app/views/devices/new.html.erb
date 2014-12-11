@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>Mes appareils</h1>
+      <h2>Ajouter mes appareils à mon logement</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6">
+      <div id="our-devices">
+        <% @device_types.each do |d| %>
+          <div class="col-xs-3 my-device">
+            <div class="title-device"><%= d.name %></div>
+            <div class="id-device hidden"><%= d.id %></div>
+            <div class="image-device"><%= image_tag(d.url, class: "img-thumbnail") %></div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <div id="my-house">
+      </div>
+      <div class="btn btn-success" id="send">Envoyer</div>
+    </div>
+  </div>
+</div>
+
+<%= content_for(:js) do %>
+  <script>
+    $(document).ready(function(){
+      var flatId = <%= params["flat_id"] %>
+      $("#our-devices > .my-device").on('click', function () {
+         var newDevice = $(this).clone();
+         $("#my-house").append(newDevice);
+      });
+
+      $(document).on('click', "#my-house > .my-device", function () {
+        var oldDevice = $(this);
+        oldDevice.remove();
+      });
+
+      $("#send").on('click', function () {
+        var deviceString = '';
+        $("#my-house > .my-device > .id-device").each(function() {
+          deviceString += " " + $(this).text();
+        });
+        $.ajax({
+                type: 'POST',
+                url: 'create_multiple',
+                data: {deviceString: deviceString}
+              });
+      });
+
+    });
+  </script>
+<% end %>
+
+
+
+
+<!-- $.ajax({
+  type: "POST",
+  url: url,
+  data: data,
+  success: success,
+  dataType: dataType
+}); -->
+
+
+
+
+
