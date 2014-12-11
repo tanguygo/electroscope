@@ -1,7 +1,6 @@
 class OrdersController < ApplicationController
 
   before_action :set_order, only: [:show, :edit, :update]
-  after_create :send_welcome_email
 
 #pour l'utilisateur qui commande en n'ayant pas encore de compte
 #génération de l'user et de l'order
@@ -24,6 +23,7 @@ class OrdersController < ApplicationController
         @order.status = "ordered_no_payment"
         @order.creation_date = Time.now
         if @order.save  #sauve l'utilisateur au passage
+          @user.save
           Flat.create( user: @user,
                        street_number: order_params[:street_number] ,
                        route: order_params[:route],
@@ -32,6 +32,7 @@ class OrdersController < ApplicationController
                        postal_code: order_params[:postal_code],
                        country: order_params[:country])
           sign_in(@user)
+          @user.send_welcome_email
           redirect_to edit_flat_path(current_user.flat)
         else
           render :new, alert: @order.errors.full_messages.join('-')
@@ -71,10 +72,6 @@ class OrdersController < ApplicationController
 
     def set_user
       @user = User.find(params[:user_id])
-    end
-
-    def send_welcome_email
-      UserMailer.welcome(self).deliver
     end
 
 end

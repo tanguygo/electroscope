@@ -1,10 +1,11 @@
-<p>Numéro client : @user.id</p>
+<p>Numéro client : <%= @user.id %></p>
 <h1>Bonjour <%= @user.first_name %>,</h1>
 
 <p>Vous avez commandé un Electroscope, quelle chic idée ! Votre compte est actif, avec votre adresse email comme identifiant. Vous pouvez accéder dès à présent à toutes les informations collectées par nos soins à votre intention.</p>
 <p>Nous sommes ravis de vous accueillir au sein de notre communauté, qui vise à promouvoir des modes de consommation d'électricité plus soucieux de l'environnement et du portefeuille des usagers. </p>
 <p>Votre electroscope vous parviendra dans un délai de quatre jours ; nous vous enverrons un message pour vous informer de son expédition.</p>
-<p>Profitez de ces quelques jours pour améliorer la personnalisation du diagnostic, en définissant les principales caractéristiques de votre <%=link_to habitation, edit_flat_path(@user.flat)%> sur votre compte</p>
+<p>Profitez de ces quelques jours pour améliorer la personnalisation du diagnostic, en définissant les principales caractéristiques de votre
+  <%=link_to "habitation", edit_flat_path(@user.flat)%> sur votre compte</p>
 <p>Merci pour votre engagement, et à très bientôt ! </p>
 <p>La communauté Electroscope</p>
 <br/>
