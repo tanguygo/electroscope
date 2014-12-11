@@ -1,5 +1,5 @@
 
-u=User.create(email:"arnaud.laurenty@gmail.com",password:"a",last_name:'laurenty',first_name:'arnaud',birthday: "06/04/1984".to_date,civility:"Monsieur",admin:"true")
+u=User.create(email:"arnaud.laurenty@gmail.com",password:"aaaaaaaa",last_name:'laurenty',first_name:'arnaud',birthday: "06/04/1984".to_date,civility:"Monsieur",admin:"true")
 b=Box.create(internal_ref: "electroscope numéro 1",status:"active",token: "user1")
 b2=Box.create(internal_ref: "electroscope numéro 2",status:"warehouse_OK",token: "user2")
 
