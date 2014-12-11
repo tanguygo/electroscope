@@ -22,7 +22,7 @@ order1=Order.create(creation_date:"06/04/1984".to_datetime, status:"delivered",c
 
   # create_table "devices", force: true do |t|
   #   t.string   "name"
-  #   t.integer  "devicetype_id"
+  #   t.integer  "device_type_id"
   #   t.integer  "flat_id"
   #   t.datetime "created_at"
   #   t.datetime "updated_at"

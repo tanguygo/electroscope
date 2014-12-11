@@ -39,7 +39,7 @@
         oldDevice.remove();
       });
 
-      $("#send").on('click', function () {
+      $("#send").mousedown(function () {
         var deviceString = '';
         $("#my-house > .my-device > .id-device").each(function() {
           deviceString += " " + $(this).text();
@@ -51,20 +51,13 @@
               });
       });
 
+      $("#send").mouseup(function() {
+        location.replace('/flats/'+flatId+'/devices')
+      });
+
     });
   </script>
 <% end %>
-
-
-
-
-<!-- $.ajax({
-  type: "POST",
-  url: url,
-  data: data,
-  success: success,
-  dataType: dataType
-}); -->
 
 
 

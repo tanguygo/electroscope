@@ -25,24 +25,24 @@
         <table>
           <tr>
             <td><%= f.label :route, "Rue" %></td>
-            <td><%= f.text_field :route %></td>
+            <td><%= f.text_field :route, value: @flat.route %></td>
           </tr>
           <tr>
             <td><%= f.label :street_number, "Numéro" %></td>
-            <td><%= f.text_field :street_number %></td>
+            <td><%= f.text_field :street_number, value: @flat.street_number %></td>
           </tr>
           <tr>
             <td><%= f.label :locality, "Ville" %></td>
-            <td><%= f.text_field :locality %>
-            <%= f.hidden_field :administrative_area_level_1 %></td>
+            <td><%= f.text_field :locality, value: @flat.locality %>
+            <%= f.hidden_field :administrative_area_level_1, value: @flat.administrative_area_level_1 %></td>
           </tr>
           <tr>
             <td><%= f.label :postal_code, "Code Postal" %></td>
-            <td><%= f.text_field :postal_code %></td>
+            <td><%= f.text_field :postal_code, value: @flat.postal_code %></td>
           </tr>
           <tr>
             <td><%= f.label :country, "Pays" %></td>
-            <td><%= f.text_field :country %></td>
+            <td><%= f.text_field :country, value: @flat.country %></td>
           </tr>
         </table>
         <%= f.submit "Enregistrer" %>
