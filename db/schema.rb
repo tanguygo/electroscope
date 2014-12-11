@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20141211110057) do
   add_index "box_sessions", ["flat_id"], name: "index_box_sessions_on_flat_id", using: :btree
 
   create_table "boxes", force: true do |t|
-    t.string   "electroscope_id"
+    t.string   "internal_ref"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "status"

@@ -1,7 +1,8 @@
 
-u=User.create(email:"arnaud.laurenty@gmail.com",password:"a",last_name:'laurenty',first_name:'arnaud',\
-  birthday: "06/04/1984".to_date,civility:"Monsieur")
-b=Box.create(electroscope_id: "electroscope numéro 1",status:"active",token: "user1")
+u=User.create(email:"arnaud.laurenty@gmail.com",password:"aaaaaaaa",last_name:'laurenty',first_name:'arnaud',birthday: "06/04/1984".to_date,civility:"Monsieur",admin:"true")
+b=Box.create(internal_ref: "electroscope numéro 1",status:"active",token: "user1")
+b2=Box.create(internal_ref: "electroscope numéro 2",status:"warehouse_OK",token: "user2")
+
 f=Flat.create(street_number:"17",route:"rue Pierre Lescot",locality:"Paris",administrative_area_level_1:"IDF",\
   postal_code: "75001",country:"France",number_of_occupants:3,surface:65.5,user:u, address_complement: "escalier A")
 bs=BoxSession.create(box:b, status:'active',flat:f,start_date:"01/10/2014".to_date)

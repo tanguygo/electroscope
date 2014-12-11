@@ -1,5 +1,4 @@
-function initializeAutocomplete(id,prefix) {
-  var element = document.getElementById(id);
+function initializeAutocomplete(element,prefix) {
   if (element) {
     var autocomplete = new google.maps.places.Autocomplete(element, { types: ['geocode'] });
     google.maps.event.addListener(autocomplete, 'place_changed', function() {
@@ -10,9 +9,7 @@ function initializeAutocomplete(id,prefix) {
 
 function onPlaceChanged(that, prefix) {
   var place = that.getPlace();
-
   // console.log(place);  // Uncomment this line to view the full object returned by Google API.
-
   for (var i in place.address_components) {
     var component = place.address_components[i];
     for (var j in component.types) {
@@ -24,10 +21,11 @@ function onPlaceChanged(that, prefix) {
   }
 }
 
-
-if (typeof google != "undefined") {
+if(window.google){
   google.maps.event.addDomListener(window, 'load', function() {
-    initializeAutocomplete('order_autocomplete_address',"order_");
+    $('.google-autocomplete').each(function(i,item){
+      initializeAutocomplete(item,$(item).data('prefix'));
+    });
   });
 };
 

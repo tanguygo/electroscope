@@ -5,132 +5,57 @@
   </div>
 </div>
 
-<%= form_for(@order) do |order_f| %>
+<%= simple_form_for(@order) do |order_f| %>
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">1. Faisons connaissance </h3>
-  </div>
-  <div class="panel-body">
-
-    <%= order_f.fields_for @user do |f| %>
-
-    <div class="field">
-      <label class="">Titre</label>
-      <% options_for_select=[['Monsieur', 1], ['Madame', 2],  ['Mademoiselle', 3]] %>
-      <%= f.select(:civility, options_for_select) %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">1. Faisons connaissance </h3>
     </div>
+    <div class="panel-body">
+      <%= order_f.simple_fields_for @user do |f| %>
+        <%= f.input :civility, collection: ['Monsieur', 'Madame','Mademoiselle'], label: "Titre" %>
+        <%= f.input :first_name, label: 'Prénom' %>
+        <%= f.input :last_name, label: 'Nom de famille' %>
+        <%= f.input :birthday, label: 'Date de naissance', as: :date, start_year: Date.today.year-60,end_year: Date.today.year-12,order: [:day,:month,:year], default: Date.today-30*365 %>
+        <%= f.input :email, label: 'Email' %>
 
-    <div class="field">
-      <label class="">Prénom</label>
-      <%= f.text_field :first_name %>
+        <% if @validatable %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.input :password, autocomplete: "off" %>
+        <%= f.input :password_confirmation, autocomplete: "off" %>
+      <% end %>
     </div>
-
-    <div class="field">
-      <label class="">Nom de famille</label>
-      <%= f.text_field :last_name %>
-    </div>
-
-    <div class="field">
-     <label class="">Date de naissance</label>
-     <%= f.date_field :birthday %>
-   </div>
-
-   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @validatable %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <% end %>
-</div>
-</div>
-
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">2. Affinez vos options</h3>
-  </div>
-  <div class="panel-body">
-
-    <div class="field">
-      <label class="">Choix de l'offre</label>
-      <% options_for_select=[['Offre de base', 1]] %>
-      <%= order_f.select(:offer_id, options_for_select) %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">2. Affinez vos options</h3>
     </div>
-
-    <label class="">Où livrer votre electroscope ?</label>
-    <div class="field">
-      <%= order_f.label :address %><br />
-      <%= order_f.text_field :address, id:"order_autocomplete_address", placeholder:"Commencez à saisir votre adresse, google la complètera pour vous" %>
+    <div class="panel-body">
+      <%= order_f.input :offer, collection: {'Offre de base'=> 1}, label: "Choix de l'offre" %>
+      <%= order_f.input :address, label: "Où livrer votre electroscope ?", input_html: {class:"google-autocomplete",data:{prefix:"order_"}}, placeholder:"Commencez à saisir votre adresse, google la complètera pour vous" %>
+      <fieldset class="disabled">
+        <%= order_f.input :street_number %>
+        <%= order_f.input :route %>
+        <%= order_f.input :postal_code %>
+        <%= order_f.input :locality %>
+        <%= order_f.input :administrative_area_level_1 %>
+        <%= order_f.input :country %>
+      </fieldset>
+      <%= order_f.input :address_complement, label:"Si besoin, entrez tout complément d'adresse utile (cage d'escalier, numéro d'appartement...)"  %>
+      <%= order_f.input :delivery_option, collection: {'livraison par la Poste'=> 1, 'retrait Mondial relais' => 2, 'parrainage'=>  3}, label: "Mode de livraison" %>
+      <%= order_f.input :counter_type, collection: ['électronique','mécanique'], label: "Mon compteur EDF est de type" %>
     </div>
-
-    <fieldset class="disabled hidden">
-      <div class="field">
-        <%= order_f.label :street_number %><br />
-        <%= order_f.text_field :street_number %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">3. Validez votre commande</h3>
       </div>
-      <div class="field">
-        <%= order_f.label :route %><br />
-        <%= order_f.text_field :route %>
+      <div class="panel-body">
+        <%= order_f.submit "Valider" %>
       </div>
-      <div class="field">
-        <%= order_f.label :postal_code %><br />
-        <%= order_f.text_field :postal_code %>
-      </div>
-      <div class="field">
-        <%= order_f.label :locality %><br />
-        <%= order_f.text_field :locality %>
-      </div>
-      <div class="field">
-        <%= order_f.label :administrative_area_level_1 %><br />
-        <%= order_f.text_field :administrative_area_level_1 %>
-      </div>
-      <div class="field">
-        <%= order_f.label :country %><br />
-        <%= order_f.text_field :country %>
-      </div>
-    </fieldset>
-    <div class="field">
-      <%= order_f.label :address_complement, "Si besoin, entrez tout complément d'adresse utile (cage d'escalier, numéro d'appartement...)" %><br />
-      <%= order_f.text_field :address_complement, placeholder: "Escalier A" %>
     </div>
-
-    <div class="field">
-      <label class="">Mode de livraison</label>
-      <% options_for_select=[['livraison par la Poste', 1], ['retrait Mondial relais', 2],  ['parrainage', 3]] %>
-      <%= order_f.select(:delivery_option, options_for_select) %>
-    </div>
-
-    <div class="field">
-      <label class="">Mon compteur EDF est de type :</label>
-      <% options_for_select=[['Electronique', 'Electronique'], ['Mécanique', 'Mécanique']] %>
-      <%= order_f.select(:counter_type, options_for_select) %>
-    </div>
-
   </div>
-</div>
-
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">3. Validez votre commande</h3>
-  </div>
-  <div class="panel-body">
-    <%= order_f.submit "Valider" %>
-  </div>
-</div>
-
 <% end %>
 
 <% content_for(:before_js) do%>
