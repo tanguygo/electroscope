@@ -23,15 +23,21 @@ class OrdersController < ApplicationController
         @order.status = "ordered_no_payment"
         @order.creation_date = Time.now
         if @order.save  #sauve l'utilisateur au passage
+          Flat.create( user: @user,
+                       street_number: order_params[:street_number] ,
+                       route: order_params[:route],
+                       locality: order_params[:locality],
+                       administrative_area_level_1: order_params[:administrative_area_level_1],
+                       postal_code: order_params[:postal_code],
+                       country: order_params[:country])
           sign_in(@user)
-          redirect_to root_path
+          redirect_to edit_flat_path(current_user.flat)
         else
           render :new, alert: @order.errors.full_messages.join('-')
         end
       else
         render :new, alert: @user.errors.full_messages.join('-')
       end
-
     end
 
     def create_authenticated

@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :flats
   has_many :orders
   has_many :box_sessions, through: :flats
+  has_many :devices, through: :flats
 
 
   def sponsor

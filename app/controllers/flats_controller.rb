@@ -24,7 +24,7 @@ class FlatsController < ApplicationController
   def update
     @flat.update(flat_params)
       if @flat.save
-        #
+        redirect_to new_flat_device_path(@flat.id)
       else
         render :edit
       end

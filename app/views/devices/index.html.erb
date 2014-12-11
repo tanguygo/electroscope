@@ -11,10 +11,12 @@
         <div>
           <div class="image-device"><%= image_tag(d.device_type.url, class: "img-thumbnail") %></div>
           <ul>
-            <h3>Type : <%= d.device_type.name %></h3>
+            <h3>Type : <%= d.name %></h3>
             <li>Consommation journalière moyenne <%= d.device_type.avg_daily_consumption %></li>
-            <li>Consommation journalière moyenne <%= d.device_type.avg_yearly_consumption %></li>
-
+            <li>Consommation annuelle moyenne <%= d.device_type.avg_yearly_consumption %></li>
+            <li>Coût par utilisation :</li>
+            <li>Coût estimé par an: </li>
+            <li>Pollution estimée par an:</li>
           </ul>
         </div>
       <% end %>

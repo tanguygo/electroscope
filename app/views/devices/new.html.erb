@@ -39,7 +39,7 @@
         oldDevice.remove();
       });
 
-      $("#send").on('click', function () {
+      $("#send").mousedown(function () {
         var deviceString = '';
         $("#my-house > .my-device > .id-device").each(function() {
           deviceString += " " + $(this).text();
@@ -49,6 +49,10 @@
                 url: 'create_multiple',
                 data: {deviceString: deviceString}
               });
+      });
+
+      $("#send").mouseup(function() {
+        location.replace('/flats/'+flatId+'/devices')
       });
 
     });
