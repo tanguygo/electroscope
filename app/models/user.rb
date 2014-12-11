@@ -40,4 +40,10 @@ class User < ActiveRecord::Base
       user.token_expiry = Time.at(auth.credentials.expires_at)
     end
   end
+
+  def flat
+    Flat.find_by user_id: self.id
+  end
 end
+
+
