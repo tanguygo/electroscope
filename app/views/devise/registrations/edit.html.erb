@@ -8,12 +8,11 @@
     <%= f.email_field :email, autofocus: true %>
   </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
   <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.label :password %>
+    <% if @validatable %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
 
@@ -23,9 +22,29 @@
   </div>
 
   <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
+    <label class="">Titre</label>
+    <% options_for_select=[['Monsieur', 1], ['Madame', 2],  ['Mademoiselle', 3]] %>
+    <%= f.select(:civility, options_for_select) %>
   </div>
+
+  <div class="field">
+    <label class="">Prénom</label>
+    <%= f.text_field :first_name %>
+  </div>
+
+  <div class="field">
+    <label class="">Nom de famille</label>
+    <%= f.text_field :last_name %>
+  </div>
+
+
+  <div class="field">
+   <label class="">Date de naissance</label>
+    <%= f.date_field :birthday %>
+  </div>
+
+
+  <%= render 'devise/registrations/address_form' %>
 
   <div class="actions">
     <%= f.submit "Update" %>
