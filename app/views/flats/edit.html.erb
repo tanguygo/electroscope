@@ -51,9 +51,34 @@
   </div>
 </div>
 
+<% if @flat.accommodation_type.nil? %>
+  <div id="background_pop_up">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Félicitations, votre commande a bien été exécutée.</h4>
+        </div>
+        <div class="modal-body">
+          <p>Un e-mail de confirmation vous a été envoyé.<br>
+            Vous recevrez votre boitier très prochainement.</p>
+          <p><strong>En attendant, prenez quelques instants pour nous fournir quelques indications sur votre logement afin d'obtenir un relevé plus précis de votre consommation électrique.</strong></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary dismiss-modal">Je continue</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div>
+<% end %>
+
+
 <%= content_for(:js) do %>
   <script>
     $(document).ready(function(){
+      $(document).on('click', ".dismiss-modal", function () {
+        $("#background_pop_up").fadeOut();
+      });
+
       $("#slider-surface").change(function () {
          var SurfaceValue = $("#slider-surface").val();
          $("#surface-val").html(SurfaceValue);
