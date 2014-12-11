@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141209160613) do
+ActiveRecord::Schema.define(version: 20141210161734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,12 +36,25 @@ ActiveRecord::Schema.define(version: 20141209160613) do
   end
 
   create_table "device_types", force: true do |t|
-    t.string   "type"
+    t.string   "name"
     t.float    "avg_daily_consumption"
     t.float    "avg_monthly_consumption_01"
     t.float    "avg_yearly_consumption"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "category"
+    t.float    "avg_monthly_consumption_02"
+    t.float    "avg_monthly_consumption_03"
+    t.float    "avg_monthly_consumption_04"
+    t.float    "avg_monthly_consumption_05"
+    t.float    "avg_monthly_consumption_06"
+    t.float    "avg_monthly_consumption_07"
+    t.float    "avg_monthly_consumption_08"
+    t.float    "avg_monthly_consumption_09"
+    t.float    "avg_monthly_consumption_10"
+    t.float    "avg_monthly_consumption_11"
+    t.float    "avg_monthly_consumption_12"
+    t.string   "url"
   end
 
   create_table "devices", force: true do |t|
@@ -69,19 +82,8 @@ ActiveRecord::Schema.define(version: 20141209160613) do
     t.float    "latitude"
     t.float    "longitude"
     t.float    "last_yearly_bill"
-    t.float    "avg_monthly_consumption_02"
-    t.float    "avg_monthly_consumption_03"
-    t.float    "avg_monthly_consumption_04"
-    t.float    "avg_monthly_consumption_05"
-    t.float    "avg_monthly_consumption_06"
-    t.float    "avg_monthly_consumption_07"
-    t.float    "avg_monthly_consumption_08"
-    t.float    "avg_monthly_consumption_09"
-    t.float    "avg_monthly_consumption_10"
-    t.float    "avg_monthly_consumption_11"
-    t.float    "avg_monthly_consumption_12"
     t.integer  "user_id"
-    t.string   "type"
+    t.string   "accommodation_type"
   end
 
   add_index "flats", ["user_id"], name: "index_flats_on_user_id", using: :btree

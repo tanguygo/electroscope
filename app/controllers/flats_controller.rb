@@ -1,6 +1,6 @@
 class FlatsController < ApplicationController
   before_action :set_flat, only: [:show, :edit, :update, :destroy]
-
+  layout "dashboard"
   def show
   end
 
@@ -10,8 +10,9 @@ class FlatsController < ApplicationController
 
   def create
     @flat = Flat.new(flat_params)
+    @flat.user = current_user
       if @flat.save
-        # redirect_to
+        redirect_to new_flat_device_path(@flat.id)
       else
         render :new
       end
@@ -23,7 +24,7 @@ class FlatsController < ApplicationController
   def update
     @flat.update(flat_params)
       if @flat.save
-        # redirect_to
+        #
       else
         render :edit
       end
@@ -37,7 +38,7 @@ class FlatsController < ApplicationController
   private
 
   def flat_params
-    params.require(:flat).permit(:name, :picture)
+    params.require(:flat).permit(:route, :street_number, :locality, :administrative_area_level_1, :postal_code, :country, :number_of_occupants, :surface, :last_yearly_bill, :accommodation_type )
   end
 
   def set_flat
@@ -45,3 +46,4 @@ class FlatsController < ApplicationController
   end
 
 end
+

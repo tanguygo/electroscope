@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>Mes appareils</h1>
+      <h2>Liste de mes appareils</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <ul>
+        <% @devices.each do |d| %>
+        <li><%= d.devicetype.name %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

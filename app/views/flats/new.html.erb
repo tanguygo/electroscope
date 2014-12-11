@@ -5,39 +5,46 @@
       <h2>Mon appartement</h2>
 
       <%= form_for(@flat) do |f| %>
-        <%= f.label :type %>
-        <%= f.radio_button :type, 'flat' %>
-        <%= f.label :type, 'Appartement', value: 'flat' %>
-        <%= f.radio_button :type, 'house' %>
-        <%= f.label :type, 'Maison', value: 'house' %>
+        <%= f.label :accommodation_type, "Type de logement" %>
+        <%= f.radio_button :accommodation_type, 'flat' %>
+        <%= f.label :accommodation_type, 'Appartement', value: 'flat' %>
+        <%= f.radio_button :accommodation_type, 'house' %>
+        <%= f.label :accommodation_type, 'Maison', value: 'house' %>
         <br>
         <%= f.label :surface, 'Surface' %>
-        <%= f.range_field :surface, id: "slider-surface", value: 100, min: 0, max: 400 %>
-        <span id="surface-val">100</span> M2
+        <%= f.range_field :surface, id: "slider-surface", value: 100, min: 0, max: 200, step:5 %>
+        <span id="surface-val">100</span> m2
         <br>
         <%= f.label :number_of_occupants, "Nombre d'habitants" %>
-        <%= f.range_field :surface, id: "slider-occupants", value: 2, min: 1, max: 20 %>
-        <span id="occupants-val">1</span> habitant(s)
+        <%= f.range_field :number_of_occupants, id: "slider-occupants", value: 1, min: 1, max: 10 %>
+        <span id="occupants-val">1 habitant</span>
         <br>
         <%= f.label :last_yearly_bill, "Montant de la dernière facture annuelle" %>
         <%= f.number_field :last_yearly_bill %> €
         <br>
-        <%= f.label :street_number, "Numéro" %>
-        <%= f.text_field :street_number %>
-        <br>
-        <%= f.label :route, "Rue" %>
-        <%= f.text_field :route %>
-        <br>
-        <%= f.label :locality, "Ville" %>
-        <%= f.text_field :locality %>
-        <%= f.hidden_field :administrative_area_level_1 %>
-        <br>
-        <%= f.label :postal_code, "Code Postal" %>
-        <%= f.text_field :postal_code %>
-        <br>
-        <%= f.label :country, "Pays" %>
-        <%= f.text_field :country %>
-        <br>
+        <table>
+          <tr>
+            <td><%= f.label :route, "Rue" %></td>
+            <td><%= f.text_field :route %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :street_number, "Numéro" %></td>
+            <td><%= f.text_field :street_number %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :locality, "Ville" %></td>
+            <td><%= f.text_field :locality %>
+            <%= f.hidden_field :administrative_area_level_1 %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :postal_code, "Code Postal" %></td>
+            <td><%= f.text_field :postal_code %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :country, "Pays" %></td>
+            <td><%= f.text_field :country %></td>
+          </tr>
+        </table>
         <%= f.submit "Enregistrer" %>
       <% end %>
     </div>
@@ -48,12 +55,17 @@
   <script>
     $(document).ready(function(){
       $("#slider-surface").change(function () {
-         var newValue = $("#slider-surface").val();
-         $("#surface-val").html(newValue);
+         var SurfaceValue = $("#slider-surface").val();
+         $("#surface-val").html(SurfaceValue);
       });
       $("#slider-occupants").change(function () {
-          var newValue2 = $("#slider-occupants").val();
-          $("#occupants-val").html(newValue2);
+        if ($("#slider-occupants").val() == 1) {
+          var OccupantsValue = $("#slider-occupants").val() + " habitant";
+        }
+        else {
+          var OccupantsValue = $("#slider-occupants").val() + " habitants";
+        }
+          $("#occupants-val").html(OccupantsValue);
        });
     });
   </script>
