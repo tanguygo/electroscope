@@ -63,3 +63,4 @@ gem 'activeadmin', github: 'activeadmin'
 
 gem 'country_select' #asked by active_admin to manage countries
 gem 'simple_form'
+gem "letter_opener", group: :development
