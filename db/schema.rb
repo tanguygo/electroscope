@@ -100,8 +100,8 @@ ActiveRecord::Schema.define(version: 20141211100142) do
     t.float    "longitude"
     t.float    "last_yearly_bill"
     t.integer  "user_id"
-    t.string   "accommodation_type"
     t.string   "address_complement"
+    t.string   "accommodation_type"
   end
 
   add_index "flats", ["user_id"], name: "index_flats_on_user_id", using: :btree
