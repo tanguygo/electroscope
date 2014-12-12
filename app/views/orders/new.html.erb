@@ -1,65 +1,97 @@
-<h1>Description de l'offre</h1>
-<div class="panel panel-default">
-  <div class="panel-body">
-    Notre offre de base vous permet d'établir rapidement un diagnostic de votre consommation électrique.
+<h1 class="text-center">Description de l'offre</h1>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+
+      <div class="panel panel-default">
+        <div class="panel-body">
+          Notre offre de base vous permet d'établir rapidement un diagnostic de votre consommation électrique.
+        </div>
+      </div>
+
+      <%= simple_form_for(@order) do |order_f| %>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">1. Faisons connaissance </h3>
+        </div>
+        <div class="panel-body">
+          <%= order_f.simple_fields_for @user do |f| %>
+          <%= f.input :civility, collection: ['Monsieur', 'Madame','Mademoiselle'], label: "Titre" %>
+          <%= f.input :first_name, label: 'Prénom' %>
+          <%= f.input :last_name, label: 'Nom de famille' %>
+          <%= f.input :birthday, label: 'Date de naissance', wrapper_html:{class: "fields_inline"},as: :date, start_year: Date.today.year-60,end_year: Date.today.year-12,order: [:day,:month,:year], default: Date.today-30*365 %>
+          <%= f.input :email, label: 'Email' %>
+
+          <% if @validatable %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %><br />
+          <%= f.input :password, autocomplete: "off",label: "Mot de passe" %>
+          <%= f.input :password_confirmation, autocomplete: "off", label: "Retapez votre mot de passe" %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">2. Affinez vos options</h3>
+        </div>
+        <div class="panel-body">
+          <%= order_f.input :offer, collection: {'Offre de base'=> 1}, label: "Choix de l'offre" %>
+          <%= order_f.input :address, label: "Où livrer votre electroscope ?", input_html: {class:"google-autocomplete",data:{prefix:"order_"}}, placeholder:"Commencez à saisir votre adresse, google la complètera pour vous" %>
+
+          <div class="row">
+            <div class="col-xs-12 col-sm-2">
+              <%= order_f.input :street_number, label: "Numéro" %>
+            </div>
+            <div class="col-xs-12 col-sm-4">
+              <%= order_f.input :route, label: "Voie"%>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+              <%= order_f.input :postal_code, label: "Code postal" %>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+              <%= order_f.input :locality, label: "Ville" %>
+            </div>
+          </div>
+
+          <fieldset class="hidden">
+            <%= order_f.input :administrative_area_level_1%>
+            <%= order_f.input :country %>
+          </fieldset>
+
+          <%= order_f.input :address_complement, label:"Si besoin, entrez tout complément d'adresse utile (cage d'escalier, numéro d'appartement...)"  %>
+          <%= order_f.input :delivery_option, collection: {'livraison par la Poste'=> 1, 'retrait Mondial relais' => 2, 'parrainage'=>  3}, label: "Mode de livraison" %>
+
+          <div class="row valigner-bottom">
+            <div class="col-xs-11">
+              <%= order_f.input :counter_type, collection: ['électronique','mécanique'], label: "Mon compteur EDF est de type" %>
+            </div>
+            <div class="col-xs-1">
+              <label for="counterModal" class="transparent">test</label>
+              <button type="button" name="counterModal" class="btn round" data-toggle="modal" data-target="#counterModal">?</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">3. Validez votre commande</h3>
+        </div>
+        <div class="panel-body">
+          <%= order_f.submit "Valider" %>
+        </div>
+      </div>
+
+      <% end %>
+
+    </div>
   </div>
 </div>
 
-<%= simple_form_for(@order) do |order_f| %>
 
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">1. Faisons connaissance </h3>
-    </div>
-    <div class="panel-body">
-      <%= order_f.simple_fields_for @user do |f| %>
-        <%= f.input :civility, collection: ['Monsieur', 'Madame','Mademoiselle'], label: "Titre" %>
-        <%= f.input :first_name, label: 'Prénom' %>
-        <%= f.input :last_name, label: 'Nom de famille' %>
-        <%= f.input :birthday, label: 'Date de naissance', as: :date, start_year: Date.today.year-60,end_year: Date.today.year-12,order: [:day,:month,:year], default: Date.today-30*365 %>
-        <%= f.input :email, label: 'Email' %>
-
-        <% if @validatable %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %><br />
-        <%= f.input :password, autocomplete: "off" %>
-        <%= f.input :password_confirmation, autocomplete: "off" %>
-      <% end %>
-    </div>
-  </div>
-
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">2. Affinez vos options</h3>
-    </div>
-    <div class="panel-body">
-      <%= order_f.input :offer, collection: {'Offre de base'=> 1}, label: "Choix de l'offre" %>
-      <%= order_f.input :address, label: "Où livrer votre electroscope ?", input_html: {class:"google-autocomplete",data:{prefix:"order_"}}, placeholder:"Commencez à saisir votre adresse, google la complètera pour vous" %>
-      <fieldset class="disabled">
-        <%= order_f.input :street_number %>
-        <%= order_f.input :route %>
-        <%= order_f.input :postal_code %>
-        <%= order_f.input :locality %>
-        <%= order_f.input :administrative_area_level_1 %>
-        <%= order_f.input :country %>
-      </fieldset>
-      <%= order_f.input :address_complement, label:"Si besoin, entrez tout complément d'adresse utile (cage d'escalier, numéro d'appartement...)"  %>
-      <%= order_f.input :delivery_option, collection: {'livraison par la Poste'=> 1, 'retrait Mondial relais' => 2, 'parrainage'=>  3}, label: "Mode de livraison" %>
-      <%= order_f.input :counter_type, collection: ['électronique','mécanique'], label: "Mon compteur EDF est de type" %>
-      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#counterModal">
-        ?
-      </button>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">3. Validez votre commande</h3>
-      </div>
-      <div class="panel-body">
-        <%= order_f.submit "Valider" %>
-      </div>
-    </div>
-  </div>
-<% end %>
 
 <%= render partial: "modal_counter_type"%>
 

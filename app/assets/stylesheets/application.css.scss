@@ -4,9 +4,11 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
 @import "index";
 @import "footer";
 @import "navbar";
+@import "orders";
 
 
 body {
@@ -15,6 +17,7 @@ body {
   padding:0;
   height: 100%;
   width: 100%;
+  font-family: 'Open Sans';
 }
 
 #wrapper {
@@ -40,3 +43,13 @@ color: black;
   display: none;
 }
 
+.fields_inline {
+    label {
+      display: block;
+    }
+    select {
+      width: 30%;
+      display: inline-block;
+    }
+
+}
