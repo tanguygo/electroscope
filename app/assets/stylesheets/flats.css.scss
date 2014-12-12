@@ -51,3 +51,19 @@
 .modal-footer {
   text-align: center;
 }
+
+#my-house {
+  min-height: 500px;
+}
+
+#my-roof {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 300px 100px 250px;
+  border-color: transparent transparent #000000 transparent;
+}
+
+
+
+
