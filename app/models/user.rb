@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :box_sessions, through: :flats
   has_many :devices, through: :flats
 
+
   def sponsor
     s=Sponsorship.where(receiver_id:self.id).first
     return s.giver if s
@@ -41,7 +42,7 @@ class User < ActiveRecord::Base
   end
 
   def flat
-    Flat.find_by user_id: self.id
+    return self.flats.last
   end
 
   def send_welcome_email

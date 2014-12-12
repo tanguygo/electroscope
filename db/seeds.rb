@@ -10,6 +10,8 @@ o=Offer.create(price:10,conditions:"offre 1")
 order1=Order.create(creation_date:"06/04/1984".to_datetime, status:"delivered",counter_type:"electronique",\
   offer:o,box:b, user:u,street_number:"17",route:"rue Pierre Lescot",locality:"Paris",administrative_area_level_1:"IDF",\
   postal_code: "75001",country:"France",address:"17 rue Pierre Lescot 75001 Paris")
+s=Statement.create(box_session:bs, time_of_measure: Time.now,pulse:200,power:134)
+s=Statement.create(box_session:bs, time_of_measure: Time.now+60,pulse:200,power:124)
 
   # create_table "device_types", force: true do |t|
   #   t.string   "type"
