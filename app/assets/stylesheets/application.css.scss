@@ -1,12 +1,12 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
+@import "active_admin";
 @import "font-awesome-sprockets";
 @import "font-awesome";
-@import "active_admin" ;
+@import "bootstrap-sprockets";
+@import "bootstrap";
 
 @import "index";
-@import "navbar";
 @import "footer";
+@import "navbar";
 
 
 body {

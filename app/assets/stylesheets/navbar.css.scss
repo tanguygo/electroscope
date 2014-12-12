@@ -39,15 +39,18 @@ $profile-border-width: 2px;
   min-height: 0;
 }
 
+
 .navbar-wagon .navbar-nav > li > a {
   color: $color;
   line-height: $height;
   padding-top: $vertical-padding;
   padding-bottom: $vertical-padding;
+  text-decoration: none;
 }
 
 .navbar-wagon .navbar-nav > li > a:hover {
   color: $color;
+  background-color: rgba(255, 255, 255, 0.5);
   line-height: $height;
   padding-top: $vertical-padding;
   padding-bottom: $vertical-padding;
@@ -68,6 +71,7 @@ $profile-border-width: 2px;
  {
   display: block;
   color: $color;
+  text-decoration: none;
   background-color: white;
   padding-top: $vertical-padding + 5px;
   padding-bottom: $vertical-padding;
@@ -107,6 +111,7 @@ $btn-margin-top: ($height + 2 * $vertical-padding - $btn-height - $btn-top-borde
   height: $height;
   padding: 0px;
 }
+
 
 #profile-pic{
   border: $profile-border-width solid $profile-border-color;
