@@ -2,11 +2,12 @@
 @import "bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
-@import "active_admin" ;
+
 
 @import "index";
 @import "navbar";
 @import "footer";
+@import "orders";
 
 
 body {
@@ -40,3 +41,13 @@ color: black;
   display: none;
 }
 
+.fields_inline {
+    label {
+      display: block;
+    }
+    select {
+      width: 30%;
+      display: inline-block;
+    }
+
+}
