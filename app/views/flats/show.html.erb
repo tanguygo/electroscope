@@ -1,12 +1,26 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <h1>@flat.accommodation_type</h1>
-      <%= @flat. %>
-      <%= @flat %>
-      <%= @flat %>
-      <%= @flat %>
-      <%= @flat %>
+      <h1>Mon logement</h1>
+      <h2>Mes coordonnées</h2>
+      <ul>
+        <li>Type de logement : <%= @flat.accommodation_type %></li>
+        <li>Superficie : <%= @flat.surface %> m2</li>
+        <li>Nombre d'habitants : <%= @flat.number_of_occupants %></li>
+        <li>Dernière facture annuelle : <%= @flat.last_yearly_bill %> €</li>
+        <li>Adresse :
+          <ul>
+            <li><%= @flat.route %> <%= @flat.street_number %></li>
+            <li><%= @flat.postal_code %> <%= @flat.locality %></li>
+            <li><%= @flat.administrative_area_level_1 %></li>
+            <li><%= @flat.country %></li>
+            <% if @flat.address_complement != nil  %>
+              <li>Complément d'adresse <%= @flat.address_complement %></li>
+            <% end %>
+          </ul>
+        </li>
+      </ul>
+      <%= link_to "Mettre à jour", edit_flat_path(@flat), class: "btn btn-primary" %>
     </div>
   </div>
 </div>
