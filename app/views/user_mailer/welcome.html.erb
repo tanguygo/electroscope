@@ -5,10 +5,11 @@
 <p>Nous sommes ravis de vous accueillir au sein de notre communauté, qui vise à promouvoir des modes de consommation d'électricité plus soucieux de l'environnement et du portefeuille des usagers. </p>
 <p>Votre electroscope vous parviendra dans un délai de quatre jours ; nous vous enverrons un message pour vous informer de son expédition.</p>
 <p>Profitez de ces quelques jours pour améliorer la personnalisation du diagnostic, en définissant les principales caractéristiques de votre
-  <%=link_to "habitation", edit_flat_path(@user.flat)%> sur votre compte</p>
+
+  <%=link_to "habitation", edit_flat_url(@user.flat)%> sur votre compte</p>
 <p>Merci pour votre engagement, et à très bientôt ! </p>
 <p>La communauté Electroscope</p>
 <br/>
-<p>ps : voici l'adresse de livraison que vous avez choisie pour la livraison de votre boîtier</p>
+<p>ps : voici l'adresse de livraison que vous avez choisie pour la livraison de votre boîtier : <%= @user.flat.street_number %> <%= @user.flat.route %> <%= @user.flat.postal_code %> <%= @user.flat.locality %> <%= @user.flat.country %></p>
 
-<p>@user.flat.locality</p>
+<p></p>
