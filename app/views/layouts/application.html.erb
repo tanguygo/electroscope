@@ -10,9 +10,10 @@
   <div id="wrapper">
 
     <%= render 'shared/navbar' %>
+    <div class="notices">
+      <%= render "layouts/notices" %>
+    </div>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
     <div id="content">
       <%= yield %>
     </div>
