@@ -6,7 +6,6 @@ class User < ActiveRecord::Base
   has_many :box_sessions, through: :flats
   has_many :devices, through: :flats
 
-
   def sponsor
     s=Sponsorship.where(receiver_id:self.id).first
     return s.giver if s
@@ -23,7 +22,6 @@ class User < ActiveRecord::Base
     end
 
   end
-
 
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable
@@ -45,6 +43,11 @@ class User < ActiveRecord::Base
   def flat
     Flat.find_by user_id: self.id
   end
+
+  def send_welcome_email
+    UserMailer.welcome(self).deliver
+  end
+
 end
 
 
