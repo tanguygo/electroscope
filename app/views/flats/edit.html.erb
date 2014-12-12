@@ -12,12 +12,18 @@
         <%= f.label :accommodation_type, 'Maison', value: 'house' %>
         <br>
         <%= f.label :surface, 'Surface' %>
-        <%= f.range_field :surface, id: "slider-surface", value: 100, min: 0, max: 200, step:5 %>
-        <span id="surface-val">100</span> m2
+        <%= f.range_field :surface, id: "slider-surface", input_html: {value: f.object.surface || '100'}, min: 0, max: 200, step:5 %>
+        <span id="surface-val"><%= f.object.surface || '100'  %></span> m2
         <br>
         <%= f.label :number_of_occupants, "Nombre d'habitants" %>
-        <%= f.range_field :number_of_occupants, id: "slider-occupants", value: 1, min: 1, max: 10 %>
-        <span id="occupants-val">1 habitant</span>
+        <%= f.range_field :number_of_occupants, id: "slider-occupants", input_html: {value: f.object.number_of_occupants || '1'}, min: 1, max: 10 %>
+        <span id="occupants-val">
+          <% if f.object.number_of_occupants.nil? || f.object.number_of_occupants==1   %>
+          <%=  "1 habitant" %>
+          <% else   %>
+           <%= f.object.number_of_occupants %> habitants
+          <% end   %>
+        </span>
         <br>
         <%= f.label :last_yearly_bill, "Montant de la dernière facture annuelle" %>
         <%= f.number_field :last_yearly_bill %> €
