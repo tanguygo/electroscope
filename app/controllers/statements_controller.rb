@@ -6,6 +6,15 @@ class StatementsController < ApplicationController
 
       def index
         @statements=Statement.all
+        @points={"cols"=>[
+        {"label"=>"Date","type"=>"date"},
+        {"label"=>"Puissance","type"=>"number"}
+      ],"rows"=>[]}
+        @statements.each{|s|
+          row="[{'v':#{s.time_of_measure}},{'v':#{s.power}}]"
+          @points["rows"]<<{"c"=>row}
+        }
+
       end
 
       def create_from_box

@@ -21,7 +21,7 @@ function onPlaceChanged(that, prefix) {
   }
 }
 
-if(window.google){
+if(window.google.maps){
   google.maps.event.addDomListener(window, 'load', function() {
     $('.google-autocomplete').each(function(i,item){
       initializeAutocomplete(item,$(item).data('prefix'));
