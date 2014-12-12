@@ -1,7 +1,7 @@
 <a class="navbar-brand" href="/">Electroscope</a>
 <ul class="nav navbar-nav nav-dash">
   <li role="presentation" class="active"><%= link_to "Mes appareils", flat_devices_path(current_user.flats.last) %></li>
-  <li role="presentation" class="active"><%= link_to "Mon appartement", root_path %></li>
+  <li role="presentation" class="active"><%= link_to "Mon appartement", flat_path(current_user.flats.last) %></li>
   <li role="presentation"><a href="#">Mon profil de consommation</a></li>
   <li role="presentation"><a href="#">Mes défis</a></li>
   <li role="presentation"><a href="#">Modélisation thermique</a></li>
