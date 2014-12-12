@@ -15,7 +15,14 @@
 
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">1. Faisons connaissance </h3>
+          <div class="row">
+            <div class="col-xs-11">
+              <h3 class="panel-title">1. Faisons connaissance </h3>
+            </div>
+            <div class="col-xs-1">
+              <i class="fa fa-chevron-down user_fields_btn fa-lg"></i>
+            </div>
+          </div>
         </div>
         <div class="panel-body">
           <%= order_f.simple_fields_for @user do |f| %>
@@ -70,7 +77,7 @@
               <%= order_f.input :counter_type, collection: ['électronique','mécanique'], label: "Mon compteur EDF est de type" %>
             </div>
             <div class="col-xs-1">
-              <label for="counterModal" class="transparent">test</label>
+              <label for="counterModal" class="transparent">-</label>
               <button type="button" name="counterModal" class="btn round" data-toggle="modal" data-target="#counterModal">?</button>
             </div>
           </div>
@@ -81,7 +88,7 @@
           <h3 class="panel-title">3. Validez votre commande</h3>
         </div>
         <div class="panel-body">
-          <%= order_f.submit "Valider" %>
+          <%= order_f.submit "Valider", :class => "btn btn-success" %>
         </div>
       </div>
 
