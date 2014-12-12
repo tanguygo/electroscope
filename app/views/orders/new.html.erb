@@ -1,7 +1,7 @@
 <h1>Description de l'offre</h1>
 <div class="panel panel-default">
   <div class="panel-body">
-    Top moumoute !
+    Notre offre de base vous permet d'établir rapidement un diagnostic de votre consommation électrique.
   </div>
 </div>
 
@@ -46,6 +46,9 @@
       <%= order_f.input :address_complement, label:"Si besoin, entrez tout complément d'adresse utile (cage d'escalier, numéro d'appartement...)"  %>
       <%= order_f.input :delivery_option, collection: {'livraison par la Poste'=> 1, 'retrait Mondial relais' => 2, 'parrainage'=>  3}, label: "Mode de livraison" %>
       <%= order_f.input :counter_type, collection: ['électronique','mécanique'], label: "Mon compteur EDF est de type" %>
+      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#counterModal">
+        ?
+      </button>
     </div>
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -57,6 +60,8 @@
     </div>
   </div>
 <% end %>
+
+<%= render partial: "modal_counter_type"%>
 
 <% content_for(:before_js) do%>
 <!-- Include Google Maps JS API -->
