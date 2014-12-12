@@ -20,7 +20,6 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
-          <li>Bienvenue <%= current_user.email %></li>
           <li><%= link_to "Se déconnecter", destroy_user_session_path, method: :delete %></li>
           <li><%= link_to "Mon compte",  flat_devices_path(current_user.flats.last) %></li>
           <% if current_user.admin %>
