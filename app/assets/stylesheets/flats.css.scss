@@ -1,12 +1,9 @@
 .title-device {
   height: 50px;
   text-align: center;
-  vertical-align: bottom;
+  font-size: 0.9em;
 }
 
-.image-device {
-  height: 100px;
-}
 
 .device-border {
   border: 1px solid black;
@@ -17,7 +14,7 @@
 
 .img-thumbnail {
   border: none;
-  padding: 10px;
+  padding: none;
   border-radius: 20px;
   margin-top: 15px;
 }
@@ -25,14 +22,15 @@
 .my-device {
   display: inline-block;
   height: 150px;
-  margin: 20px auto;
+  margin: 5px;
   border: 1px solid #dddddd;
-  border-radius: 5px;
+
 }
 
 
 #my-house {
   border: 2px solid black;
+  align-content: center;
 }
 
 #background_pop_up {
@@ -53,15 +51,12 @@
 }
 
 #my-house {
-  min-height: 500px;
+  min-height: 400px;
 }
 
-#my-roof {
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 0 300px 100px 250px;
-  border-color: transparent transparent #000000 transparent;
+#send {
+  width: 100%;
+  border-radius: 0px;
 }
 
 
