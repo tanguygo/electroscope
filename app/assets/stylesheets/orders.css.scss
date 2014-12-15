@@ -1,3 +1,4 @@
+$lorange: #FFF28A;
  .valigner-bottom {
    display: table;
    width: 100%;
@@ -16,9 +17,14 @@
   background-color: #E5E2E2;
 }
 .round:hover{
-  background-color: #FCFE7F;
+  background-color: $lorange;
 }
 
 .transparent{
   color:rgba(0,0,0,0);
 }
+
+.panel-heading:hover{
+  background-color: $lorange;
+}
+
