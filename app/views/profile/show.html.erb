@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row title-bar">
+    <h2>Mon profil</h2>
+    <div class="btn-sign-out">
+      <p><%= current_user.first_name %> <%= current_user.last_name %><br>
+      <%= link_to("Se déconnecter", "url") %></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6">
+      <h3>Vos coordonnées</h3>
+      <ul>
+        <li>Civilité : <%= @user.civility %></li>
+        <li>Prénom : <%= @user.first_name %></li>
+        <li>Nom : <%= @user.last_name %></li>
+        <li>Date de naissance : <%= @user.birthday %></li>
+        <li>E-mail : <%= @user.email %></li>
+      </ul>
+      <%= link_to "Mettre à jour le profil", edit_profile_path, class: "btn btn-primary" %>
+
+      <h3>Parrainage</h3>
+      <p>En parrainant un ami, vous profitez d'une réduction de 99% sur votre dernière mensualité, le parrainé, quant à lui, bénéficie d'une réduction de 1% sur sa première mensualité. Soit une réduction de 100%.</p>
+      <%= link_to "Parrainer un ami", new_sponsorship_path, class: "btn btn-success" %>
+    </div>
+  </div>
+</div>

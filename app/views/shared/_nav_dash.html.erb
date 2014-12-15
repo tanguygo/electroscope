@@ -35,7 +35,7 @@
   </li>
 
   <li role="presentation">
-    <%= link_to edit_profile_path(current_user.id) do %>
+    <%= link_to profile_path(current_user.id) do %>
       <%= image_tag("nav_icons/user.png", class: "icon") %>
       <br>Mon compte
     <% end %>
