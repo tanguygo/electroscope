@@ -1,10 +1,11 @@
-<a class="navbar-brand" href="/">Electroscope</a>
-<ul class="nav navbar-nav nav-dash">
-  <li role="presentation" class="active"><%= link_to "Mes appareils", flat_devices_path(current_user.flats.last) %></li>
-  <li role="presentation" class="active"><%= link_to "Mon appartement", flat_path(current_user.flats.last) %></li>
-  <li role="presentation"><a href="#">Mon profil de consommation</a></li>
-  <li role="presentation"><a href="#">Mes défis</a></li>
-  <li role="presentation"><a href="#">Modélisation thermique</a></li>
-  <li role="presentation"><%= link_to "Mon compte", edit_profile_path(current_user) %></li>
-</ul>
-
+<div class="dashboard-nav">
+  <a class="navbar-brand" href="/">Electroscope</a>
+  <ul class="nav navbar-nav nav-dash">
+    <li role="presentation" class="active"><%= link_to "Mes appareils", flat_devices_path(current_user.flats.last) %></li>
+    <li role="presentation" class="active"><%= link_to "Mon appartement", flat_path(current_user.flats.last) %></li>
+    <li role="presentation"><a href="#">Mon profil de consommation</a></li>
+    <li role="presentation"><a href="#">Mes défis</a></li>
+    <li role="presentation"><a href="#">Modélisation thermique</a></li>
+    <li role="presentation"><%= link_to "Mon compte", edit_profile_path(current_user) %></li>
+  </ul>
+</div>
