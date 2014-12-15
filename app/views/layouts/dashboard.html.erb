@@ -8,10 +8,14 @@
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>
 </head>
 <body>
+  <div class="dashboard-nav">
+    <div id="logo"><a href="/"><%= image_tag("electroscope_logo.png") %></a></div>
+    <%= render 'shared/nav_dash' %>
+  </div>
   <div class="container">
+    <div class="spacer-100"></div>
     <div class="row">
-      <div class="col-xs-12" >
-        <%= render 'shared/nav_dash' %>
+      <div class="col-xs-10 col-xs-offset-2">
         <%= yield %>
       </div>
     </div>

@@ -1,8 +1,12 @@
+<div id="title-bar">
+
+</div>
 <div class="container">
-  <div class="row">
-    <div class="col-xs-12">
-      <h1>Mes appareils</h1>
-      <h2>Liste de mes appareils</h2>
+  <div class="row title-bar">
+    <h2>Mes appareils</h2>
+    <div class="btn-sign-out">
+      <p><%= current_user.first_name %> <%= current_user.last_name %><br>
+      <%= link_to("Se déconnecter", "url") %></p>
     </div>
   </div>
   <div class="row">
@@ -27,3 +31,4 @@
     </div>
   </div>
 </div>
+
