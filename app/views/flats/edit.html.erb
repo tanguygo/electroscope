@@ -3,70 +3,21 @@
     <div class="col-xs-6">
       <h1>Mon appartement</h1>
       <h2>Editer</h2>
-
-      <%= form_for(@flat) do |f| %>
-        <%= f.label :accommodation_type, "Type de logement" %>
-        <%= f.radio_button :accommodation_type, 'flat' %>
-        <%= f.label :accommodation_type, 'Appartement', value: 'flat' %>
-        <%= f.radio_button :accommodation_type, 'house' %>
-        <%= f.label :accommodation_type, 'Maison', value: 'house' %>
-        <br>
-        <%= f.label :surface, 'Surface' %>
-        <%= f.range_field :surface, id: "slider-surface", input_html: {value: f.object.surface || '100'}, min: 0, max: 200, step:5 %>
-        <span id="surface-val"><%= f.object.surface || '100'  %></span> m2
-        <br>
-        <%= f.label :number_of_occupants, "Nombre d'habitants" %>
-        <%= f.range_field :number_of_occupants, id: "slider-occupants", input_html: {value: f.object.number_of_occupants || '1'}, min: 1, max: 10 %>
-        <span id="occupants-val">
-          <% if f.object.number_of_occupants.nil? || f.object.number_of_occupants==1   %>
-          <%=  "1 habitant" %>
-          <% else   %>
-           <%= f.object.number_of_occupants %> habitants
-          <% end   %>
-        </span>
-        <br>
-        <%= f.label :last_yearly_bill, "Montant de la dernière facture annuelle" %>
-        <%= f.number_field :last_yearly_bill %> €
-        <br>
-        <table>
-          <tr>
-            <td><%= f.label :route, "Rue" %></td>
-            <td><%= f.text_field :route, value: @flat.route %></td>
-          </tr>
-          <tr>
-            <td><%= f.label :street_number, "Numéro" %></td>
-            <td><%= f.text_field :street_number, value: @flat.street_number %></td>
-          </tr>
-          <tr>
-            <td><%= f.label :locality, "Ville" %></td>
-            <td><%= f.text_field :locality, value: @flat.locality %>
-            <%= f.hidden_field :administrative_area_level_1, value: @flat.administrative_area_level_1 %></td>
-          </tr>
-          <tr>
-            <td><%= f.label :postal_code, "Code Postal" %></td>
-            <td><%= f.text_field :postal_code, value: @flat.postal_code %></td>
-          </tr>
-          <tr>
-            <td><%= f.label :country, "Pays" %></td>
-            <td><%= f.text_field :country, value: @flat.country %></td>
-          </tr>
-        </table>
-        <%= f.submit "Enregistrer" %>
-      <% end %>
+      <%= render partial: "form"%>
     </div>
   </div>
 </div>
 
 <% if @flat.accommodation_type.nil? %>
-  <div id="background_pop_up">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Félicitations, votre commande a bien été exécutée.</h4>
-        </div>
-        <div class="modal-body">
-          <p>Un e-mail de confirmation vous a été envoyé.<br>
-            Vous recevrez votre boitier très prochainement.</p>
+<div id="background_pop_up">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Félicitations, votre commande a bien été exécutée.</h4>
+      </div>
+      <div class="modal-body">
+        <p>Un e-mail de confirmation vous a été envoyé.<br>
+          Vous recevrez votre boitier très prochainement.</p>
           <p><strong>En attendant, prenez quelques instants pour nous fournir quelques indications sur votre logement afin d'obtenir un relevé plus précis de votre consommation électrique.</strong></p>
         </div>
         <div class="modal-footer">
@@ -75,31 +26,38 @@
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div>
-<% end %>
+  <% end %>
 
 
-<%= content_for(:js) do %>
+  <%= content_for(:js) do %>
   <script>
-    $(document).ready(function(){
-      $(document).on('click', ".dismiss-modal", function () {
-        $("#background_pop_up").fadeOut();
-      });
 
-      $("#slider-surface").change(function () {
-         var SurfaceValue = $("#slider-surface").val();
-         $("#surface-val").html(SurfaceValue);
-      });
-      $("#slider-occupants").change(function () {
-        if ($("#slider-occupants").val() == 1) {
-          var OccupantsValue = $("#slider-occupants").val() + " habitant";
-        }
-        else {
-          var OccupantsValue = $("#slider-occupants").val() + " habitants";
-        }
-          $("#occupants-val").html(OccupantsValue);
-       });
+  $(document).ready(function(){
+     var updateOccupantsLabel = function(){
+       var OccupantsValue = $("#slider-occupants").val() + " habitant";
+       OccupantsValue += $("#slider-occupants").val() == 1 ? "" : "s";
+       $("#occupants-val").html(OccupantsValue);
+    };
+
+    $("#surface-val").html($("#slider-surface").val() + " m²");
+    updateOccupantsLabel();
+    $(document).on('click', ".dismiss-modal", function () {
+      $("#background_pop_up").fadeOut();
     });
-  </script>
+
+    $("#slider-surface").change(function () {
+     $("#surface-val").html($("#slider-surface").val() + " m²");
+   });
+    $("#slider-occupants").change(function () {
+      updateOccupantsLabel();
+    });
+
+});
+
+</script>
+
+
+
 <% end %>
 
 

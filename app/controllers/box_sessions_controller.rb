@@ -3,7 +3,6 @@ class BoxSessionsController < ApplicationController
   before_action :set_box, only: [:create]
 
   def create
-
     @box_session = BoxSession.new(box: @box,flat:current_user.flat,start_date:Time.now(),activated:true,connected:false)
     if @box_session.save  #sauve l'utilisateur au passage
       @user.send_activation_email
@@ -25,7 +24,7 @@ class BoxSessionsController < ApplicationController
   end
 
   def box_params
-    params.require(:box).permit(:internal_ref)
+    params.require(:box_session).require(:box).permit(:internal_ref)
   end
 
 end
