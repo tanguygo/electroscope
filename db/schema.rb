@@ -34,11 +34,12 @@ ActiveRecord::Schema.define(version: 20141215155832) do
   create_table "box_sessions", force: true do |t|
     t.date     "start_date"
     t.date     "end_date"
-    t.string   "status"
     t.integer  "flat_id"
     t.integer  "box_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "connected"
+    t.boolean  "activated"
   end
 
   add_index "box_sessions", ["box_id"], name: "index_box_sessions_on_box_id", using: :btree
@@ -50,6 +51,7 @@ ActiveRecord::Schema.define(version: 20141215155832) do
     t.datetime "updated_at"
     t.string   "status"
     t.string   "token"
+    t.string   "localization"
   end
 
   create_table "device_types", force: true do |t|

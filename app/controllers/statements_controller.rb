@@ -5,7 +5,7 @@ class StatementsController < ApplicationController
     skip_before_action :verify_authenticity_token, only: :create_from_box
 
       def index
-        @statements=Statement.all
+        @statements=current_user.statements.all.order(created_at: :desc)
         @points={"cols"=>[
         {"id"=>"Date","label"=>"Date","type"=>"datetime"},
         {"id"=>"Power","label"=>"Puissance","type"=>"number"}],
@@ -17,20 +17,14 @@ class StatementsController < ApplicationController
       end
 
       def create_from_box
-        if @box_session.statements.count<=1 or @box_session.plateau?(statement_params[:time_of_measure]) == false
+        if @box_session.statements.count<=1 || @box_session.plateau?(statement_params[:time_of_measure]) == false
+          @box_session.update(connected:true) if @box_session.statements.count==0
           add_a_point
         else # If power has not changed, we update the time of the last point
           @box_session.statements.last.update(time_of_measure: statement_params[:time_of_measure])
         end
         redirect_to statements_path
       end
-
-      # def create_from_box_old
-      #   @statement = Statement.new(statement_params)
-      #   @statement.box_session=@box_session
-      #   @statement.save
-      #   redirect_to statements_path
-      # end
 
       private
 

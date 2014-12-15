@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :statements, only: [:index]
   resources :profile, only: [:show, :edit, :update]
   resources :sponsorship, only: [:show, :new, :create]
+  get "/activation", to: "box_sessions#new"
+  resources :box_sessions, only: [:create]
   root to: "pages#index"
   resources :flats do
     resources :devices, only:  [:index, :new, :create]
