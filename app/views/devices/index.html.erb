@@ -10,13 +10,13 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-12 col-md-6">
+    <div class="col-xs-12">
       <% @devices.each do |d| %>
         <div class="device-border">
           <div class="row">
             <div class="col-xs-8">
               <ul>
-                <h3><%= d.name %></h3>
+                <h3><%= d.name.capitalize %></h3>
                 <li>Consommation journalière moyenne <%= d.device_type.avg_daily_consumption %></li>
                 <li>Consommation annuelle moyenne <%= d.device_type.avg_yearly_consumption %></li>
                 <li>Coût par utilisation :</li>
