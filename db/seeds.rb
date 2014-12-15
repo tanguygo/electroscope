@@ -13,6 +13,13 @@ order1=Order.create(creation_date:"06/04/1984".to_datetime, status:"delivered",c
 s=Statement.create(box_session:bs, time_of_measure: Time.now,pulse:200,power:134)
 s=Statement.create(box_session:bs, time_of_measure: Time.now+60,pulse:200,power:124)
 
+
+# statement seeds (au préalable, passer la route de post en get pour créer les points avec le navigateur en get)
+# localhost:3000/statements/create_from_box?token=user1&&pulse=643&&time_of_measure=2014-12-15T10:46:33.599&&power=55
+# /statements/create_from_box?token=user1&&pulse=48&&time_of_measure=2014-12-15T10:51:07.186&&power=750
+# /statements/create_from_box?token=user1&&pulse=48&&time_of_measure=2014-12-15T10:54:07.186&&power=750
+# /statements/create_from_box?token=user1&&pulse=48&&time_of_measure=2014-12-15T10:58:07.186&&power=800
+
   # create_table "device_types", force: true do |t|
   #   t.string   "type"
   #   t.float    "avg_daily_consumption"

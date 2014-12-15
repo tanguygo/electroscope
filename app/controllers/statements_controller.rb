@@ -14,17 +14,31 @@ class StatementsController < ApplicationController
           row=[{'v'=>"#{s.time_of_measure.to_f+8*3600}"},{'v'=> "#{s.power}"}]
           @points["rows"]<<{"c"=>row}
         }
-
       end
 
       def create_from_box
-        @statement = Statement.new(statement_params)
-        @statement.box_session=@box_session
-        @statement.save
+        if @box_session.statements.count<=1 or @box_session.plateau?(statement_params[:time_of_measure]) == false
+          add_a_point
+        else # If power has not changed, we update the time of the last point
+          @box_session.statements.last.update(time_of_measure: statement_params[:time_of_measure])
+        end
         redirect_to statements_path
       end
 
+      # def create_from_box_old
+      #   @statement = Statement.new(statement_params)
+      #   @statement.box_session=@box_session
+      #   @statement.save
+      #   redirect_to statements_path
+      # end
+
       private
+
+      def add_a_point
+        @statement = Statement.new(statement_params)
+        @statement.box_session=@box_session
+        @statement.save
+      end
 
       def set_statement
         @statement = Statement.find(params[:id])
