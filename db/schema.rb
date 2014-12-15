@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141215125723) do
+ActiveRecord::Schema.define(version: 20141215155221) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,8 +49,9 @@ ActiveRecord::Schema.define(version: 20141215125723) do
     t.string   "internal_ref"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "status"
+    t.string   "status"   #OK, KO or maintenance
     t.string   "token"
+    t.string   "localization"  #shipping, warehouse or client
   end
 
   create_table "device_types", force: true do |t|

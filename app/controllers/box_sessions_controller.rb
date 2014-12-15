@@ -4,7 +4,8 @@ class BoxSessionsController < ApplicationController
 
   def create
     @box_session = BoxSession.new(box: @box,flat:current_user.flat,start_date:Time.now(),activated:true,connected:false)
-    if @box_session.save  #sauve l'utilisateur au passage
+    if @box_session.save
+      @box.update(localization: "client")
       @user.send_activation_email
       redirect_to root_path
     else
@@ -20,7 +21,7 @@ class BoxSessionsController < ApplicationController
   private
 
   def set_box
-    @box = Box.find_by_internal_ref(params[:box_identifier])
+    @box = Box.find_by_internal_ref(box_params[:internal_ref])
   end
 
   def box_params

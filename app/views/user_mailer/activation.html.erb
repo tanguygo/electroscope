@@ -1,0 +1,11 @@
+<p>Numéro client : <%= @user.id %></p>
+<h1>Bonjour <%= @user.first_name %>,</h1>
+
+<p>Félicitations, vous venez de recevoir et d'activer votre électroscope !</p>
+<p>Si vous l'avez installé, il a commencé à travailler pour vous en relevant en temps réel votre consommation électrique. Dans ce cas, vous pouvez dès à présent consulter les résultats sur la page "Ma consommation" de votre espace client </p>
+<% if @user.devices.count == 0  %>
+  <p>Toutefois, vous n'avez pas encore personnalisé votre compte en saisissant les principaux équipements électriques qui s'y trouvent. Pour améliorer la qualité du diagnostic, nous vous invitons à décrire votre logement sur l'espace dédié de <%=link_to "votre compte", edit_flat_url(@user.flat)%></p>
+<% end %>
+<p>Félicitations pour votre engagement, et à très bientôt ! </p>
+<p>La communauté Electroscope</p>
+<br/>
