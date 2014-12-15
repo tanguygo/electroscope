@@ -53,3 +53,15 @@ color: black;
     }
 
 }
+
+ .valigner-bottom {
+   display: table;
+   width: 100%;
+   height: 100%;
+
+   > [class^="col-"] {
+     vertical-align: top;
+     display: table-cell;
+     float: none;
+   }
+ }

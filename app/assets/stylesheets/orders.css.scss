@@ -1,30 +1,17 @@
 $lorange: #FFF28A;
- .valigner-bottom {
-   display: table;
-   width: 100%;
-   height: 100%;
 
-   > [class^="col-"] {
-     vertical-align: top;
-     display: table-cell;
-     float: none;
-   }
- }
 
 .round{
   border-radius:50%;
   border-color:#B8B8B8;
   background-color: #E5E2E2;
 }
-.round:hover{
-  background-color: $lorange;
-}
 
 .transparent{
   color:rgba(0,0,0,0);
 }
 
-.panel-heading:hover{
+.orange-hover:hover{
   background-color: $lorange;
 }
 

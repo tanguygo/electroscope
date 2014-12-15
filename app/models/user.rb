@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
   has_many :box_sessions, through: :flats
   has_many :devices, through: :flats
 
+  def box
+    return self.box_sessions.last.box
+  end
 
   def sponsor
     s=Sponsorship.where(receiver_id:self.id).first
@@ -21,7 +24,6 @@ class User < ActiveRecord::Base
       }
       return u
     end
-
   end
 
   devise :database_authenticatable, :registerable,
@@ -45,6 +47,9 @@ class User < ActiveRecord::Base
     return self.flats.last
   end
 
+  def send_activation_email
+    UserMailer.activation(self).deliver
+  end
   def send_welcome_email
     UserMailer.welcome(self).deliver
   end

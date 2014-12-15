@@ -1,0 +1,40 @@
+<h2 class="text-center">Vous avez reçu votre électroscope et vous souhaitez l'activer</h2>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Comment installer son boîtier ?</h3>
+        </div>
+        <div class="panel-body">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum atque doloribus quasi officia eum qui omnis consequatur facilis nulla corporis! Commodi autem iste, doloremque. Dolore doloribus nisi earum doloremque quia!</p>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Entrez dans l'unvivers électroscope</h3>
+        </div>
+        <div class="panel-body">
+          <p>Activez votre compte en saisissant ci-dessous le numéro inscrit sur votre électroscope</p>
+
+          <div class="row valigner-bottom">
+            <div class="col-xs-11">
+              <%= simple_form_for(@box_session) do |f| %>
+              <%= f.simple_fields_for @box do |box_f| %>
+              <%= box_f.input :internal_ref, label: false %>
+            </div>
+            <div class="col-xs-1">
+              <button type="button" name="identifierModal" class="btn round orange-hover" data-toggle="modal" data-target="#identifierModal">?</button>
+            </div>
+          </div>
+          <%= f.submit "Activer", :class => "btn btn-success" %>
+          <% end  %>
+          <% end  %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render partial: "modal_identifier"%>

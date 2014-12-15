@@ -1,1 +1,45 @@
-_form.html.erb
+<%= form_for(@flat) do |f| %>
+    <%= f.label :accommodation_type, "Type de logement" %>
+    <%= f.radio_button :accommodation_type, 'flat' %>
+    <%= f.label :accommodation_type, 'Appartement', value: 'flat' %>
+    <%= f.radio_button :accommodation_type, 'house' %>
+    <%= f.label :accommodation_type, 'Maison', value: 'house' %>
+    <br>
+    <%= f.label :surface, 'Surface' %>
+
+    <%= f.range_field :surface, id: "slider-surface", min: 0, max: 200, step:5 %>
+    <span id="surface-val"><%= f.object.surface %> m2</span>
+    <br>
+    <%= f.label :number_of_occupants, "Nombre d'occupants" %>
+    <%= f.range_field :number_of_occupants, id: "slider-occupants", min: 1, max: 10 %>
+    <span id="occupants-val">  <%= f.object.number_of_occupants  %> habitant</span>
+    <br>
+    <%= f.label :last_yearly_bill, "Montant de la dernière facture annuelle" %>
+    <%= f.number_field :last_yearly_bill %> €
+    <br>
+    <table>
+      <tr>
+        <td><%= f.label :route, "Rue" %></td>
+        <td><%= f.text_field :route, value: @flat.route %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :street_number, "Numéro" %></td>
+        <td><%= f.text_field :street_number, value: @flat.street_number %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :locality, "Ville" %></td>
+        <td><%= f.text_field :locality, value: @flat.locality %>
+        <%= f.hidden_field :administrative_area_level_1, value: @flat.administrative_area_level_1 %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :postal_code, "Code Postal" %></td>
+        <td><%= f.text_field :postal_code, value: @flat.postal_code %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :country, "Pays" %></td>
+        <td><%= f.text_field :country, value: @flat.country %></td>
+      </tr>
+  </table>
+  <%= f.submit "Enregistrer" %>
+<% end %>
+

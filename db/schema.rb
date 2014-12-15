@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141211110057) do
+ActiveRecord::Schema.define(version: 20141215155221) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,11 +34,12 @@ ActiveRecord::Schema.define(version: 20141211110057) do
   create_table "box_sessions", force: true do |t|
     t.date     "start_date"
     t.date     "end_date"
-    t.string   "status"
     t.integer  "flat_id"
     t.integer  "box_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "connected"
+    t.boolean  "activated"
   end
 
   add_index "box_sessions", ["box_id"], name: "index_box_sessions_on_box_id", using: :btree
@@ -48,8 +49,9 @@ ActiveRecord::Schema.define(version: 20141211110057) do
     t.string   "internal_ref"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "status"
+    t.string   "status"   #OK, KO or maintenance
     t.string   "token"
+    t.string   "localization"  #shipping, warehouse or client
   end
 
   create_table "device_types", force: true do |t|
@@ -100,8 +102,8 @@ ActiveRecord::Schema.define(version: 20141211110057) do
     t.float    "longitude"
     t.float    "last_yearly_bill"
     t.integer  "user_id"
-    t.string   "accommodation_type"
     t.string   "address_complement"
+    t.string   "accommodation_type"
   end
 
   add_index "flats", ["user_id"], name: "index_flats_on_user_id", using: :btree
