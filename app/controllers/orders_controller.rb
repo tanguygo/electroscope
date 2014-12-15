@@ -31,7 +31,7 @@ class OrdersController < ApplicationController
                        administrative_area_level_1: order_params[:administrative_area_level_1],
                        postal_code: order_params[:postal_code],
                        country: order_params[:country],
-                       nb_of_occupants: 1,
+                       number_of_occupants: 1,
                        surface: 80)
           sign_in(@user)
           @user.send_welcome_email
