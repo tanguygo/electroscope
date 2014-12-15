@@ -1,0 +1,29 @@
+<h2 class="text-center">Vous avez reçu votre électroscope et souhaitez l'activer</h2>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Comment installer son boîtier ?</h3>
+        </div>
+        <div class="panel-body">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum atque doloribus quasi officia eum qui omnis consequatur facilis nulla corporis! Commodi autem iste, doloremque. Dolore doloribus nisi earum doloremque quia!</p>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Entrez dans l'unvivers électroscope</h3>
+        </div>
+        <div class="panel-body">
+          <p>Activez votre compte en saisissant le numéro inscrit sur votre électroscope</p>
+          <% simple_form_for(@box_session) do |f| %>
+            <%= f.simple_fields_for @box do |box_f| %>
+             <%= f.input :internal_ref %>
+             <% end  %>
+          <% end  %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

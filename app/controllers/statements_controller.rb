@@ -5,7 +5,7 @@ class StatementsController < ApplicationController
     skip_before_action :verify_authenticity_token, only: :create_from_box
 
       def index
-        @statements=Statement.all
+        @statements=Statement.all.order(created_at: :desc)
         @points={"cols"=>[
         {"id"=>"Date","label"=>"Date","type"=>"datetime"},
         {"id"=>"Power","label"=>"Puissance","type"=>"number"}],
@@ -24,13 +24,6 @@ class StatementsController < ApplicationController
         end
         redirect_to statements_path
       end
-
-      # def create_from_box_old
-      #   @statement = Statement.new(statement_params)
-      #   @statement.box_session=@box_session
-      #   @statement.save
-      #   redirect_to statements_path
-      # end
 
       private
 

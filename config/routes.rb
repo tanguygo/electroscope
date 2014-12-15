@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   resources :orders
   post "/statements/create_from_box", to: "statements#create_from_box"
   resources :statements, only: [:index]
+  get "/activation", to: "box_sessions#new"
+  resources :box_sessions, only: [:create]
+
   resources :profile, only: [:edit, :update]
   root to: "pages#index"
   resources :flats do
