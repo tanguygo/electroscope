@@ -8,25 +8,116 @@
 
 
 body {
-  background-color: white;
+  background-color: #ebebeb;
   margin:0;
   padding:0;
   height: 100%;
+}
+
+h2 {
+  font-size: 2em;
+  padding-top: 6px;
+  margin-left: 40px;
+  display: inline-block;
+}
+
+h3 {
+  font-size: 1.5em;
 }
 
 .spacer-100 {
   height: 100px;
 }
 
+#logo img {
+  margin: 15px;
+  width: 90%;
+}
+
+#logo {
+  background-color: #ebebeb;
+  height: 80px;
+  z-index: 2;
+}
+
 .nav-dash {
   float: right;
   border: none;
+  text-decoration: none;
 }
-
 
 .dashboard-nav {
-
+  background-color: #1295D2;
+  height: 100%;
+  position: fixed;
+  width: 17.7%;
 }
+
+.nav-perso {
+  padding: 0px;
+  margin: 0px;
+}
+
+
+.nav-perso li {
+  list-style-type: none;
+  text-align: center;
+  padding: 15px 0px;
+}
+
+.nav-perso li:hover {
+  background-color: #0E6FA8;
+}
+
+.nav-perso li a{
+  color: #ebebeb;
+}
+
+.nav-perso li a:hover{
+  text-decoration: none;
+}
+
+.icon {
+  height: 40px;
+  width: 40px;
+}
+
+.title-bar {
+  background-color: white;
+  position: fixed;
+  height: 80px;
+  width: 82.3%;
+  top: 0;
+  z-index: 200000;
+}
+
+.container {
+  width: 100%;
+}
+
+.btn-sign-out {
+  float: right;
+  padding: 2.5%;
+  height: 100%;
+  background-color: rgb(98, 98, 98);
+  position: static;
+  color: rgb(240, 240, 240);
+  text-align: center;
+  font-size: 0.9em;
+}
+
+.btn-sign-out a {
+  text-decoration: none;
+  color: rgb(240, 240, 240);
+  font-size: 1em;
+}
+
+.btn-sign-out:hover {
+  background-color: rgb(162, 162, 162);
+  color: rgb(240, 240, 240);
+}
+
+
 
 
 
