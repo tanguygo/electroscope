@@ -1,18 +1,15 @@
 
 u=User.create(email:"arnaud.laurenty@gmail.com",password:"aaaaaaaa",last_name:'laurenty',first_name:'arnaud',birthday: "06/04/1984".to_date,civility:"Monsieur",admin:"true")
-b=Box.create(internal_ref: "electroscope numéro 1",status:"active",token: "user1")
-b2=Box.create(internal_ref: "electroscope numéro 2",status:"warehouse_OK",token: "user2")
+b=Box.create(internal_ref: "electroscope numéro 1",status:"OK",localization:"client",token: "user1")
+b2=Box.create(internal_ref: "electroscope numéro 2",status:"OK",localization:"warehouse",token: "user2")
 
 f=Flat.create(street_number:"17",route:"rue Pierre Lescot",locality:"Paris",administrative_area_level_1:"IDF",\
   postal_code: "75001",country:"France",number_of_occupants:3,surface:65.5,user:u, address_complement: "escalier A")
-bs=BoxSession.create(box:b, status:'active',flat:f,start_date:"01/10/2014".to_date)
+bs=BoxSession.create(box:b, activated:true,connected:true,flat:f,start_date:"01/10/2014".to_date)
 o=Offer.create(price:10,conditions:"offre 1")
 order1=Order.create(creation_date:"06/04/1984".to_datetime, status:"delivered",counter_type:"electronique",\
   offer:o,box:b, user:u,street_number:"17",route:"rue Pierre Lescot",locality:"Paris",administrative_area_level_1:"IDF",\
   postal_code: "75001",country:"France",address:"17 rue Pierre Lescot 75001 Paris")
-s=Statement.create(box_session:bs, time_of_measure: Time.now,pulse:200,power:134)
-s=Statement.create(box_session:bs, time_of_measure: Time.now+60,pulse:200,power:124)
-
 
 # statement seeds (au préalable, passer la route de post en get pour créer les points avec le navigateur en get)
 # localhost:3000/statements/create_from_box?token=user1&&pulse=643&&time_of_measure=2014-12-15T10:46:33.599&&power=55
