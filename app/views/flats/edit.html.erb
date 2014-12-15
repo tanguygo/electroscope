@@ -1,8 +1,14 @@
 <div class="container">
+  <div class="row title-bar">
+    <h2>Mon logement</h2>
+    <div class="btn-sign-out">
+      <p><%= current_user.first_name %> <%= current_user.last_name %><br>
+      <%= link_to("Se déconnecter", "url") %></p>
+    </div>
+  </div>
   <div class="row">
     <div class="col-xs-6">
-      <h1>Mon appartement</h1>
-      <h2>Editer</h2>
+      <h3>Editer</h3>
       <%= render partial: "form"%>
     </div>
   </div>
