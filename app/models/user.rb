@@ -10,6 +10,11 @@ class User < ActiveRecord::Base
     return self.box_sessions.last.box
   end
 
+
+  def statements
+    return self.box_sessions.last.statements
+  end
+
   def sponsor
     s=Sponsorship.where(receiver_id:self.id).first
     return s.giver if s
