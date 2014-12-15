@@ -2,6 +2,9 @@ class ProfileController < ApplicationController
   before_action :set_user, only: [:edit, :update]
   layout "dashboard"
 
+  def show
+    @user = User.find(params[:id])
+  end
 
   def edit
     @user = User.find(params[:id])
