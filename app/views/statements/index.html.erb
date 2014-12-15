@@ -29,8 +29,8 @@
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript">
 
-  // Load the Visualization API and the piechart package.
-  google.load("visualization", "1", {packages: ["corechart"]});
+  // Load the Visualization API and the chart package.
+  google.load('visualization', '1', {'packages':['annotatedtimeline']});
 
   // Set a callback to run when the Google Visualization API is loaded.
   google.setOnLoadCallback(drawChart);
@@ -42,26 +42,24 @@
 
     // Create the data table.
     var points_json = <%= raw @points.to_json %>;
-    var test_json = {
-"cols":[
-    {"type":"date"},{"type":"number"}
-    ],
-"rows":[
-    {"c": [{ "v": "20-01-13"},{"v":35} ]},
-    {"c": [{ "v": "21-01-13"},{"v":30} ]}
-    ]
-};
-    console.log(points_json);
-    console.log(test_json);
+    //
+    // console.log("********************")
+
+for ( var i = 0; i < points_json.rows.length; i++ ) {
+    points_json.rows[i].c[0].v = new Date(points_json.rows[i].c[0].v * 1000 );
+}
+console.log(points_json);
+
     var data = new google.visualization.DataTable(points_json);
 
-    // Set chart options
-    var options = {'title':'Power',
-                   'width':400,
-                   'height':300};
+    var options = {
+        width: 1000,
+        height: 563,
+             displayAnnotations: true
+           };
 
     // Instantiate and draw our chart, passing in some options.
-    var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+    var chart = new google.visualization.AnnotatedTimeLine(document.getElementById('chart_div'));
     chart.draw(data, options);
   }
 </script>
