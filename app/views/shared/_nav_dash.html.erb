@@ -1,8 +1,48 @@
 <ul class="nav-perso">
-  <li role="presentation"><a href="#"><%= image_tag("nav_icons/devices.png", class: "icon") %><br>Mes appareils</a></li>
-  <li role="presentation"><a href="#"><%= image_tag("nav_icons/flat.png", class: "icon") %><br>Mon appartement</a></li>
-  <li role="presentation"><a href="#"><%= image_tag("nav_icons/bill.png", class: "icon") %><br>Ma consommation</a></li>
-  <li role="presentation"><a href="#"><%= image_tag("nav_icons/challenge.png", class: "icon") %><br>Mes défis</a></li>
-  <li role="presentation"><a href="#"><%= image_tag("nav_icons/energy_conso.png", class: "icon") %><br>Modélisation thermique</a></li>
-  <li role="presentation"><a href="#"><%= image_tag("nav_icons/user.png", class: "icon") %><br>Mon compte</a></li>
+  <li role="presentation">
+    <%= link_to flat_devices_path(current_user.flat) do %>
+      <%= image_tag("nav_icons/devices.png", class: "icon") %>
+      <br>Mes appareils
+    <% end %>
+  </li>
+
+  <li role="presentation">
+    <%= link_to flat_path(current_user.flat) do %>
+      <%= image_tag("nav_icons/flat.png", class: "icon") %>
+      <br>Mon appartement
+    <% end %>
+  </li>
+
+  <li role="presentation">
+    <%= link_to root_path do %>
+      <%= image_tag("nav_icons/bill.png", class: "icon") %>
+      <br>Ma consommation
+    <% end %>
+  </li>
+
+  <li role="presentation">
+    <%= link_to root_path do %>
+      <%= image_tag("nav_icons/challenge.png", class: "icon") %>
+      <br>Mes défis
+    <% end %>
+  </li>
+
+  <li role="presentation">
+    <%= link_to root_path do %>
+      <%= image_tag("nav_icons/energy_conso.png", class: "icon") %>
+      <br>Modélisation thermique
+    <% end %>
+  </li>
+
+  <li role="presentation">
+    <%= link_to edit_profile_path(current_user.id) do %>
+      <%= image_tag("nav_icons/user.png", class: "icon") %>
+      <br>Mon compte
+    <% end %>
+  </li>
 </ul>
+
+
+
+
+
