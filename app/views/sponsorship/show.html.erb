@@ -6,12 +6,16 @@
       <%= link_to("Se déconnecter", "url") %></p>
     </div>
   </div>
-  <div class="row">
-    <div class="col-xs-8">
-      <h3>Votre parrainage</h3>
-      <p>Vous avez envoyé une invitation de parrainage à <%= @sponsorship.receiver_email %>. La date de remise du boitier que vous avez indiquée est le <%= @sponsorship.disposal_date %></p>
-      <p>Vous ne pouvez parrainer qu'une personne. Si vous souhaitez annuler ce parrainage, vous pouvez nous contacter par e-mail à contact@electroscope.fr</p>
-      <p>Merci pour votre collaboration.</p>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-xs-8">
+          <h3>Votre parrainage</h3>
+          <p>Vous avez envoyé une invitation de parrainage à <%= @sponsorship.receiver_email %>. La date de remise du boitier que vous avez indiquée est le <%= @sponsorship.disposal_date %></p>
+          <p>Vous ne pouvez parrainer qu'une personne. Si vous souhaitez annuler ce parrainage, vous pouvez nous contacter par e-mail à contact@electroscope.fr</p>
+          <p>Merci pour votre collaboration.</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -11,7 +11,7 @@
 
 
 body {
-  background-color: #7ec9fc;
+  background-color: #1295D2;
   margin:0;
   padding:0;
   height: 100%;
@@ -19,6 +19,17 @@ body {
   font-family: 'Open Sans';
 }
 
+
+#logo img {
+  margin: 6px;
+  width: 90%;
+}
+
+#logo {
+  background-color: #ebebeb;
+  height: 100%;
+  z-index: 2;
+}
 
 #wrapper {
   min-height:100%;

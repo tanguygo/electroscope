@@ -17,7 +17,7 @@
     <%= f.label :last_yearly_bill, "Montant de la dernière facture annuelle" %>
     <%= f.number_field :last_yearly_bill %> €
     <br>
-    <table>
+    <table id="edit-flat-table">
       <tr>
         <td><%= f.label :route, "Rue" %></td>
         <td><%= f.text_field :route, value: @flat.route %></td>
@@ -40,6 +40,6 @@
         <td><%= f.text_field :country, value: @flat.country %></td>
       </tr>
   </table>
-  <%= f.submit "Enregistrer" %>
+  <%= f.submit "Enregistrer", class: "btn btn-primary" %>
 <% end %>
 

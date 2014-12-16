@@ -6,20 +6,24 @@
       <%= link_to("Se déconnecter", "url") %></p>
     </div>
   </div>
-  <div class="row">
-    <div class="col-xs-6">
-      <h3>Le saviez-vous ?</h3>
-      <p>En parrainant un ami, vous profitez d'une réduction de 99% sur votre dernière mensualité. Le parrainé, quant à lui, bénéficie d'une réduction de 1% sur sa première mensualité.</p>
-      <p>Pour parrainer un ami, il suffit d'introduire son adresse e-mail ci-dessous et de choisir la date à laquelle vous lui remettrez le boitier.</p>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-xs-6">
+          <h3>Le saviez-vous ?</h3>
+          <p>En parrainant un ami, vous profitez d'une réduction de 99% sur votre dernière mensualité. Le parrainé, quant à lui, bénéficie d'une réduction de 1% sur sa première mensualité.</p>
+          <p>Pour parrainer un ami, il suffit d'introduire son adresse e-mail ci-dessous et de choisir la date à laquelle vous lui remettrez le boitier.</p>
 
-      <%= simple_form_for @sponsorship, url: sponsorship_index_path, method: :post do |f| %>
+          <%= simple_form_for @sponsorship, url: sponsorship_index_path, method: :post do |f| %>
 
-        <%= f.input :receiver_email, label: 'E-mail de la personne que vous parrainez' %>
-        <%= f.input :disposal_date, label: 'Date de remise du boitier', as: :date, start_year: Date.today.year,end_year: Date.today.year,order: [:day,:month,:year], default: Date.today %>
+            <%= f.input :receiver_email, label: 'E-mail de la personne que vous parrainez' %>
+            <%= f.input :disposal_date, label: 'Date de remise du boitier', as: :date, start_year: Date.today.year,end_year: Date.today.year,order: [:day,:month,:year], default: Date.today %>
 
-        <%= f.submit "Envoyer" %>
+            <%= f.submit "Envoyer" %>
 
-      <% end %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
