@@ -91,6 +91,7 @@ h3 {
   position: fixed;
   height: 80px;
   width: 82.3%;
+  margin-left: 16.6%;
   top: 0;
   z-index: 10;
 }
@@ -113,12 +114,12 @@ h3 {
 .btn-sign-out a {
   text-decoration: none;
   color: rgb(240, 240, 240);
-  font-size: 1em;
 }
 
 .btn-sign-out:hover {
+  text-decoration: none;
   background-color: rgb(162, 162, 162);
-  color: rgb(240, 240, 240);
+  color: black;
 }
 
 

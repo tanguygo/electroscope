@@ -13,6 +13,13 @@
     <%= render 'shared/nav_dash' %>
   </div>
   <div class="container">
+    <div class="row title-bar">
+      <h2><%= yield(:heading) %></h2>
+      <%= link_to destroy_user_session_path , method: :delete, class: "btn-sign-out" do %>
+        <%= current_user.first_name %> <%= current_user.last_name %><br>
+        Se déconnecter
+      <% end %>
+    </div>
     <div class="spacer-100"></div>
     <div class="row">
       <div class="col-xs-10 col-xs-offset-2">
