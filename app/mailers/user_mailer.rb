@@ -6,5 +6,21 @@ class UserMailer < ActionMailer::Base
     mail(to: @user.email, subject: 'Bienvenue dans la communauté Electroscope !')
     # This will render a view in `app/views/user_mailer`!
   end
+
+  def sponsor_giver(sponsorship, giver)
+    @giver = giver
+    @sponsorship = sponsorship  # Instance variable => available in view
+    mail(to: @giver.email, subject: 'Merci pour votre parrainage !')
+    # This will render a view in `app/views/user_mailer`!
+  end
+
+  def sponsor_receiver(sponsorship, giver)
+    @giver = giver
+    @sponsorship = sponsorship  # Instance variable => available in view
+    mail(to: @sponsorship.receiver_email, subject: "Vous venez d'être parrainé !" )
+    # This will render a view in `app/views/user_mailer`!
+  end
+
+
 end
 
