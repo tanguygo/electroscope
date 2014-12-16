@@ -6,6 +6,7 @@ class StatementsController < ApplicationController
 
       def index
         @statements=policy_scope(Statement).order(created_at: :desc)
+        authorize @statements
         @points={"cols"=>[
         {"id"=>"Date","label"=>"Date","type"=>"datetime"},
         {"id"=>"Power","label"=>"Puissance","type"=>"number"}],

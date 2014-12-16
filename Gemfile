@@ -39,12 +39,12 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 # user management
-
 gem 'devise'
 # Devise with fb-omniauth extension
 gem 'omniauth-facebook'
 # For extended use of fb API (getting user's friends infos, posting on his wall..)
 gem 'koala'
+# key mngt stripe aws
 gem 'figaro'
 
 group :development do
@@ -55,13 +55,13 @@ end
 gem 'bootstrap-sass', '~> 3.3.1'
 gem 'font-awesome-sass', '~> 4.2.0'
 gem 'bootstrap_form'
-
+gem 'simple_form'
 
 gem 'rails_12factor', group: :production
 ruby '2.1.2'
 gem 'activeadmin', github: 'activeadmin'
 
 gem 'country_select' #asked by active_admin to manage countries
-gem 'simple_form'
+
 gem "letter_opener", group: :development
 gem "pundit"

@@ -40,9 +40,11 @@ ActiveAdmin.register_page "Dashboard" do
           table_for Box.order('id desc').limit(10).each do |box|
             column("Internal reference")   {|box| box.internal_ref       }
             column("Status")   {|box| status_tag(box.status)}
-            column("User")    {|box| box.status=="active" ? link_to(box.user.last_name, admin_user_path(box.user))  : "ND"  }
-            column("Last statement date")   {|box| box.status=="active" ? box.statements.last.time_of_measure : "ND"}
-            column("Last statement power")   {|box| box.status=="active" ? box.statements.last.power : "ND" }
+            column("Activated")   {|box| status_tag(box.box_sessions.last.activated)}
+            column("Connected")   {|box| status_tag(box.box_sessions.last.connected)}
+            column("User")    {|box| box.localization=="client" ? link_to(box.user.last_name, admin_user_path(box.user))  : "ND"  }
+            column("Last statement date")   {|box| (box.localization =="client" && box.statements.count>=1) ? box.statements.last.time_of_measure : "ND"}
+            column("Last statement power")   {|box| (box.localization =="client" && box.statements.count>=1) ? box.statements.last.power : "ND" }
           end
         end
       end

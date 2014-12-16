@@ -1,21 +1,27 @@
 
 u=User.create(email:"arnaud.laurenty@gmail.com",password:"aaaaaaaa",last_name:'laurenty',first_name:'arnaud',birthday: "06/04/1984".to_date,civility:"Monsieur",admin:"true")
+u2=User.create(email:"charles@degaulle.com",password:"aaaaaaaa",last_name:'gaulle',first_name:'charles',birthday: "06/04/1984".to_date,civility:"Monsieur",admin:"false")
 b=Box.create(internal_ref: "electroscope numéro 1",status:"OK",localization:"client",token: "user1")
-b2=Box.create(internal_ref: "electroscope numéro 2",status:"OK",localization:"warehouse",token: "user2")
+b2=Box.create(internal_ref: "electroscope numéro 2",status:"OK",localization:"client",token: "user2")
 
 f=Flat.create(street_number:"17",route:"rue Pierre Lescot",locality:"Paris",administrative_area_level_1:"IDF",\
   postal_code: "75001",country:"France",number_of_occupants:3,surface:65.5,user:u, address_complement: "escalier A")
-bs=BoxSession.create(box:b, activated:true,connected:true,flat:f,start_date:"01/10/2014".to_date)
+f2=Flat.create(street_number:"17",route:"rue Pierre Lescot",locality:"Paris",administrative_area_level_1:"IDF",\
+  postal_code: "75001",country:"France",number_of_occupants:3,surface:65.5,user:u2, address_complement: "escalier A")
+bs=BoxSession.create(box:b, activated:true,connected:false,flat:f,start_date:"01/10/2014".to_date)
+bs2=BoxSession.create(box:b2, activated:true,connected:false,flat:f2,start_date:"01/10/2014".to_date)
 o=Offer.create(price:10,conditions:"offre 1")
 order1=Order.create(creation_date:"06/04/1984".to_datetime, status:"delivered",counter_type:"electronique",\
   offer:o,box:b, user:u,street_number:"17",route:"rue Pierre Lescot",locality:"Paris",administrative_area_level_1:"IDF",\
   postal_code: "75001",country:"France",address:"17 rue Pierre Lescot 75001 Paris")
-
+order2=Order.create(creation_date:"06/04/1984".to_datetime, status:"delivered",counter_type:"electronique",\
+  offer:o,box:b2, user:u2,street_number:"17",route:"rue Pierre Lescot",locality:"Paris",administrative_area_level_1:"IDF",\
+  postal_code: "75001",country:"France",address:"17 rue Pierre Lescot 75001 Paris")
 # statement seeds (au préalable, passer la route de post en get pour créer les points avec le navigateur en get)
 # localhost:3000/statements/create_from_box?token=user1&&pulse=643&&time_of_measure=2014-12-15T10:46:33.599&&power=55
-# /statements/create_from_box?token=user1&&pulse=48&&time_of_measure=2014-12-15T10:51:07.186&&power=750
-# /statements/create_from_box?token=user1&&pulse=48&&time_of_measure=2014-12-15T10:54:07.186&&power=750
-# /statements/create_from_box?token=user1&&pulse=48&&time_of_measure=2014-12-15T10:58:07.186&&power=800
+# localhost:3000/statements/create_from_box?token=user1&&pulse=48&&time_of_measure=2014-12-15T10:51:07.186&&power=750
+# localhost:3000/statements/create_from_box?token=user1&&pulse=48&&time_of_measure=2014-12-15T10:54:07.186&&power=750
+# localhost:3000/statements/create_from_box?token=user1&&pulse=48&&time_of_measure=2014-12-15T10:58:07.186&&power=800
 
   # create_table "device_types", force: true do |t|
   #   t.string   "type"

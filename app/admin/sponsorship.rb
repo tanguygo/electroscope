@@ -1,5 +1,5 @@
 ActiveAdmin.register Sponsorship do
-  permit_params :giver_id,:receiver_id,:date,:status,:box_id
+  permit_params :giver_id,:receiver_id,:date_reception,:status,:box_id, :disposal_date, :receiver_email
     # t.integer  "giver_id"
     # t.integer  "receiver_id"
     # t.datetime "date"

@@ -1,6 +1,6 @@
 ActiveAdmin.register Device do
 
-  permit_params :name, :devicetype_id, :flat_id
+  permit_params :name, :device_type_id, :flat_id
 
 
 

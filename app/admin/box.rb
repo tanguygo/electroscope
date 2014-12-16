@@ -1,6 +1,6 @@
 ActiveAdmin.register Box do
 
-  permit_params :internal_ref, :status, :token
+  permit_params :internal_ref, :status, :token, :localization
 
   # t.string   "internal_ref"
   # t.datetime "created_at"
