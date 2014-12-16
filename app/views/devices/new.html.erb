@@ -6,24 +6,28 @@
       <%= link_to("Se déconnecter", "url") %></p>
     </div>
   </div>
-  <div class="row">
-    <div class="col-xs-6">
-      <h3>Ajouter des appareils éléctriques</h3>
-      <div id="our-devices">
-        <% @device_types.each do |d| %>
-          <div class="col-xs-2 my-device">
-            <div class="title-device"><%= d.name %></div>
-            <div class="id-device hidden"><%= d.id %></div>
-            <div class="image-device"><%= image_tag(d.url, class: "img-thumbnail device") %></div>
-            <div class="image-device"><%= image_tag( "devices/delete.png", class: "img-thumbnail delete hidden") %></div>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-xs-6">
+          <h3>Ajouter des appareils éléctriques</h3>
+          <div id="our-devices">
+            <% @device_types.each do |d| %>
+              <div class="col-xs-2 my-device">
+                <div class="title-device"><%= d.name %></div>
+                <div class="id-device hidden"><%= d.id %></div>
+                <div class="image-device"><%= image_tag(d.url, class: "img-thumbnail device") %></div>
+                <div class="image-device"><%= image_tag( "devices/delete.png", class: "img-thumbnail delete hidden") %></div>
+              </div>
+            <% end %>
           </div>
-        <% end %>
+        </div>
+        <div class="col-xs-6">
+          <div id="my-house">
+          </div>
+          <div class="btn btn-success" id="send">Sauver mes appareils électriques</div>
+        </div>
       </div>
-    </div>
-    <div class="col-xs-6">
-      <div id="my-house">
-      </div>
-      <div class="btn btn-success" id="send">Sauver mes appareils électriques</div>
     </div>
   </div>
 </div>
