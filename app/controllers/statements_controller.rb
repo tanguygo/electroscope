@@ -2,6 +2,7 @@ class StatementsController < ApplicationController
   before_action :set_statement, only: [:show, :edit, :update]
   before_action :set_box_session, only: [:create_from_box]
   skip_before_action :verify_authenticity_token, only: :create_from_box
+  skip_before_action :authenticate_user!, only: :create_from_box
   after_action :verify_policy_scoped, :only => :index
 
   def index
