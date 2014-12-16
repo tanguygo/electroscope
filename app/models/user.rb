@@ -10,7 +10,6 @@ class User < ActiveRecord::Base
     return self.box_sessions.last.box
   end
 
-
   def statements
     return self.box_sessions.last.statements
   end
