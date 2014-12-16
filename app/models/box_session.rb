@@ -8,7 +8,7 @@ class BoxSession < ActiveRecord::Base
   end
 
   def plateau?(power)
-    return self.statements[-1].power==self.statements[-2].power && self.statements[-1].power==power
+    return self.statements[-1].power.to_i==self.statements[-2].power.to_i && self.statements[-1].power.to_i==power.to_i
   end
 
 end

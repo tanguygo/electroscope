@@ -1,3 +1,2 @@
 class FlatPolicy < ApplicationPolicy
-
 end

@@ -1,6 +1,6 @@
 ActiveAdmin.register BoxSession do
 
-  permit_params :start_date, :end_date, :status, :flat_id, :box_id
+  permit_params :start_date, :end_date, :flat_id, :box_id, :connected, :activated
 
 
 

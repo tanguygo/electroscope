@@ -1,4 +1,4 @@
-class SponsorshipController < ApplicationController
+class SponsorshipsController < ApplicationController
   before_action :set_user, only: [:show, :create]
   layout "dashboard"
 

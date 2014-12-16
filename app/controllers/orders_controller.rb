@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:new,:create]
 
   before_action :set_order, only: [:show, :edit, :update]
 
