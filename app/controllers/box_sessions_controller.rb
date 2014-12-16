@@ -1,5 +1,5 @@
 class BoxSessionsController < ApplicationController
-
+  layout "dashboard"
   before_action :set_box, only: [:create]
 
   def create

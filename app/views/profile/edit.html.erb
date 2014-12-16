@@ -1,24 +1,19 @@
+<% content_for :heading, "Mon Profil" %>
 <div class="container">
-  <div class="row title-bar">
-    <h2>Editer mon profil</h2>
-    <div class="btn-sign-out">
-      <p><%= current_user.first_name %> <%= current_user.last_name %><br>
-      <%= link_to("Se déconnecter", "url") %></p>
-    </div>
-  </div>
   <div class="panel panel-default">
     <div class="panel-body">
       <div class="row">
         <div class="col-xs-6">
-            <%= simple_form_for @user, url: profile_path, method: :put do |f| %>
+          <h3>Editer mon profil</h3>
+          <%= simple_form_for @user, url: profile_path, method: :put do |f| %>
 
-            <%= f.input :civility, collection: ['Monsieur', 'Madame','Mademoiselle'], label: "Titre" %>
-            <%= f.input :first_name, label: 'Prénom' %>
-            <%= f.input :last_name, label: 'Nom de famille' %>
-            <%= f.input :birthday, label: 'Date de naissance', as: :date, start_year: Date.today.year-60,end_year: Date.today.year-12,order: [:day,:month,:year], default: Date.today-30*365 %>
-            <%= f.input :email, label: 'Email' %>
+          <%= f.input :civility, collection: ['Monsieur', 'Madame','Mademoiselle'], label: "Titre" %>
+          <%= f.input :first_name, label: 'Prénom' %>
+          <%= f.input :last_name, label: 'Nom de famille' %>
+          <%= f.input :birthday, label: 'Date de naissance', as: :date, start_year: Date.today.year-60,end_year: Date.today.year-12,order: [:day,:month,:year], default: Date.today-30*365 %>
+          <%= f.input :email, label: 'Email' %>
 
-            <%= f.submit "Update" %>
+          <%= f.submit "Update" %>
           <% end %>
         </div>
       </div>

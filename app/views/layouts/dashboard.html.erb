@@ -13,6 +13,16 @@
     <%= render 'shared/nav_dash' %>
   </div>
   <div class="container">
+    <div class="row title-bar">
+      <h2><%= yield(:heading) %></h2>
+      <% if current_user.box_sessions.count == 0 || !current_user.box_sessions.last.activated %>
+        <%= link_to "Activer mon boîtier", activation_path, class: "btn btn-success" %>
+      <% end %>
+      <%= link_to destroy_user_session_path , method: :delete, class: "btn-sign-out" do %>
+        <%= current_user.first_name %> <%= current_user.last_name %><br>
+        Se déconnecter
+      <% end %>
+    </div>
     <div class="spacer-100"></div>
     <div class="row">
       <div class="col-xs-10 col-xs-offset-2">
