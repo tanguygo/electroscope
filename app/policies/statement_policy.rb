@@ -21,7 +21,5 @@ class StatementPolicy < ApplicationPolicy
         end
       end
     end
-
   end
-
 end

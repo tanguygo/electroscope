@@ -2,10 +2,10 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
   resources :orders
-  post "/statements/create_from_box", to: "statements#create_from_box"
+  get "/statements/create_from_box", to: "statements#create_from_box"
   resources :statements, only: [:index]
-  resources :profile, only: [:show, :edit, :update]
-  resources :sponsorship, only: [:show, :new, :create]
+  resources :profiles, only: [:show, :edit, :update]
+  resources :sponsorships, only: [:show, :new, :create]
   get "/activation", to: "box_sessions#new"
   resources :box_sessions, only: [:create]
   root to: "pages#index"

@@ -1,4 +1,4 @@
-class ProfileController < ApplicationController
+class ProfilesController < ApplicationController
   before_action :set_user, only: [:edit, :update]
   layout "dashboard"
 

@@ -11,9 +11,9 @@ class ApplicationController < ActionController::Base
   # local exceptions (at development stage) are not intercepted, so as to correct bugs with the debugger
   unless Rails.application.config.consider_all_requests_local
    rescue_from Exception, with: :handle_exception
- end
+  end
 
- private
+  private
 
   def user_not_authorized(e=nil)
     flash[:alert] = "Vous n'avez pas les droits requis pour accéder à cette page. Vérifiez que vous êtes connecté au bon compte !"
@@ -23,16 +23,16 @@ class ApplicationController < ActionController::Base
     raise ActionController::RoutingError.new('Not Found')
   end
 
-def handle_exception(exception=nil)
-  if exception
-    if [ActionController::RoutingError, ActionController::UnknownController, AbstractController::ActionNotFound].include?(exception.class)
-      return render_404
-    else
-      logger = Logger.new(STDOUT)
-      logger.debug "Exception Message: #{exception.message} \n"
-      logger.debug "Exception Class: #{exception.class} \n"
-      logger.debug "Exception Backtrace: \n"
-      logger.debug exception.backtrace.join("\n")
+  def handle_exception(exception=nil)
+    if exception
+      if [ActionController::RoutingError, ActionController::UnknownController, AbstractController::ActionNotFound].include?(exception.class)
+        return render_404
+      else
+        logger = Logger.new(STDOUT)
+        logger.debug "Exception Message: #{exception.message} \n"
+        logger.debug "Exception Class: #{exception.class} \n"
+        logger.debug "Exception Backtrace: \n"
+        logger.debug exception.backtrace.join("\n")
         # DevMailer.exception(exception, request.original_url, request.fullpath, current_copasser)
         return render_500
       end
