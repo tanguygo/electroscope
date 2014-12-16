@@ -5,7 +5,7 @@ class StatementsController < ApplicationController
     skip_before_action :verify_authenticity_token, only: :create_from_box
 
       def index
-        @statements=current_user.statements.all.order(created_at: :desc)
+        @statements=policy_scope(Statement).order(created_at: :desc)
         @points={"cols"=>[
         {"id"=>"Date","label"=>"Date","type"=>"datetime"},
         {"id"=>"Power","label"=>"Puissance","type"=>"number"}],

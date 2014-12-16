@@ -1,5 +1,8 @@
 class FlatsController < ApplicationController
   before_action :set_flat, only: [:show, :edit, :update, :destroy]
+  after_action :verify_authorized, :except => :index
+  after_action :verify_policy_scoped, :only => :index
+
   layout "dashboard"
   def show
   end
@@ -43,6 +46,7 @@ class FlatsController < ApplicationController
 
   def set_flat
      @flat = Flat.find(params[:id])
+     authorize @flat
   end
 
 end
