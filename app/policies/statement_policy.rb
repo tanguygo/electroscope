@@ -1,0 +1,3 @@
+class StatementPolicy < ApplicationPolicy
+
+end

@@ -12,7 +12,6 @@ class ApplicationPolicy
 
   def show?
     record.user == user
-    scope.where(:id => record.id).exists?
   end
 
   def create?
@@ -48,10 +47,12 @@ class ApplicationPolicy
     end
 
     def resolve
-      if user.admin?
-        scope.all
-      else
-        scope.where(:user => user)
+      if user
+        if user.admin?
+          scope.all
+        else
+          scope.where(:user => user)
+        end
       end
     end
   end
