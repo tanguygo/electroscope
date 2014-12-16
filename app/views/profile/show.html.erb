@@ -4,13 +4,6 @@
     <div class="panel-body">
       <div class="row">
         <div class="col-xs-12 col-sm-8">
-          <% if @user.box_sessions && @user.box_sessions.last.activated == false %>
-            <div class="alert alert-info">
-              <h3>Activer mon boitier</h3>
-              <p>Avez-vous reçu votre boitier ? Si c'est le cas, il ne vous reste plus qu'à l'activer.</p>
-              <%= link_to "Activer mon boîtier", activation_path, class: "btn btn-success" %>
-            </div>
-          <% end %>
           <h3>Vos coordonnées</h3>
           <ul>
             <li>Civilité : <%= @user.civility %></li>
