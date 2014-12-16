@@ -12,7 +12,7 @@ class StatementsController < ApplicationController
     {"id"=>"Power","label"=>"Puissance","type"=>"number"}],
     "rows"=>[]}
     @statements.each{|s|
-      row=[{'v'=>"#{s.time_of_measure.to_f+8*3600}"},{'v'=> "#{s.power}"}]
+      row=[{'v'=>"#{s.time_of_measure.to_f+7*3600}"},{'v'=> "#{s.power}"}]
       @points["rows"]<<{"c"=>row}
     }
   end
