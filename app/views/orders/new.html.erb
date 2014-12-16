@@ -88,7 +88,7 @@
               </fieldset>
 
               <%= order_f.input :address_complement, label:"Si besoin, entrez tout complément d'adresse utile (cage d'escalier, numéro d'appartement...)"  %>
-              <%= order_f.input :delivery_option, collection: {'livraison par la Poste'=> 1, 'retrait Mondial relais' => 2, 'parrainage'=>  3}, label: "Mode de livraison" %>
+              <%= order_f.input :delivery_option, collection: {'livraison par la Poste'=> 'postal', 'retrait Mondial relais' => 'mondial relay', 'parrainage'=>  'sponsor'}, label: "Mode de livraison" %>
 
               <div class="row valigner-bottom">
                 <div class="col-xs-11">

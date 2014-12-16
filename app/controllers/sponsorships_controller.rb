@@ -18,12 +18,10 @@ class SponsorshipsController < ApplicationController
   def create
     @sponsorship = Sponsorship.new(sponsor_params)
     @sponsorship.giver_id = @user.id
-    @sponsorship.giver_id = @user.box
-    @sponsorship.status = "invite sent"
+    @sponsorship.box_id = @user.box
+    @sponsorship.status = "active"
 
     if @sponsorship.save
-      @sponsorship.send_sponsor_giver_email(@user)
-      @sponsorship.send_sponsor_receiver_email(@user)
       redirect_to profile_path(@user)
     else
       render :new, alert: @sponsorship.errors.full_messages.join('-')
