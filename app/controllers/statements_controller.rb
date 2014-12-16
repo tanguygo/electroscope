@@ -26,7 +26,7 @@ class StatementsController < ApplicationController
       @box_session.statements.last.update(time_of_measure: statement_params[:time_of_measure])
     p "je n'ai pas ajouté de point"
     end
-    redirect_to statements_path
+    redirect_to root_path
   end
 
   private
