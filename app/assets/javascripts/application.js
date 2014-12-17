@@ -2,6 +2,7 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require jquery.scrollme
+//= require jquery.easypiechart
 
 //= require_tree .
 

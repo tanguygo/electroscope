@@ -64,6 +64,71 @@
   padding: 5px 10px 5px 0px;
 }
 
+// Style pour devices/index.html.erb
+
+.small-image {
+  width: 20%;
+  float: right;
+  margin-top: 10px;
+}
+
+.vignette {
+  background-color: white;
+  margin: 2%;
+
+  p, h3 {
+  display: inline-block;
+  }
+
+  table {
+    width: 100%;
+    height: 150px;
+    text-align: center;
+  }
+
+  td {
+    width: 33%;
+    font-size: 1.4em;
+    padding: 20px auto;
+  }
+
+  .in-circle {
+    border: 10px solid #EBEBEB;
+    border-radius: 50%;
+    width: 110px;
+    height: 110px;
+    padding-top: 23%;;
+  }
+}
+
+
+
+// Style pour les graphiques (Donuts)
+
+.chart {
+  position: relative;
+  display: inline-block;
+  width: 110px;
+  height: 110px;
+  text-align: center;
+}
+.chart canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.percent {
+  display: inline-block;
+  line-height: 110px;
+  z-index: 2;
+}
+.percent:after {
+  content: '%';
+  margin-left: 0.1em;
+  font-size: .8em;
+}
+
+
 
 
 

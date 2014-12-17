@@ -3,7 +3,16 @@ class DevicesController < ApplicationController
   before_action :set_flat, only: [:index,:create_multiple]
 
   def index
-    @devices = @flat.devices
+    @devices_by_type = {}
+    @total_conso = 0
+    current_user.devices.each do |d|
+      @total_conso += d.device_type.avg_yearly_consumption
+      if @devices_by_type[d.device_type_id].nil?
+        @devices_by_type[d.device_type_id] = 1
+      else
+        @devices_by_type[d.device_type_id] += 1
+      end
+    end
   end
 
   def new
