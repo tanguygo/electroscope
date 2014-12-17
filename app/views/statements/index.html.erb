@@ -9,7 +9,11 @@
           <div id="chart_div"></div>
           <p>La dernière mesure (<%= @statements.last.power.to_i %> W) a été relevée à <%= l(DateTime.now, format: :date_with_time) %></p>
           <% else   %>
-          <p>Votre électroscope n'a pas encore envoyé de relevé. Vérifiez que vous avez correctement procédé à son installation, et que vous l'avez activé (<%= link_to "activer mon boîtier", activation_path, class: "btn btn-success" %>).</p>
+          <p>Votre électroscope n'a pas encore envoyé de relevé. A priori, deux causes peuvent expliquer cela :</p>
+            <ul>
+              <li>Votre boîtier n'est pas installé. Consulter le guide pour procéder à l'installation.</li>
+              <li>Votre boîtier est défectueux. Contactez notre service client.</li>
+            </ul>
           <% end %>
         </div>
       </div>
