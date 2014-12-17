@@ -2,33 +2,34 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <% @devices_by_type.each do |id, nbr| %>
-      <% d = DeviceType.find(id) %>
-        <div class="device-border">
-          <div class="row">
-            <div class="col-xs-8">
-              <ul>
-                <h3><%= d.name.capitalize %> : <%= nbr %> </h3>
-                <li>Consommation annuelle moyenne : <%= (d.avg_yearly_consumption * nbr).to_i %> Watts</li>
-                <li>Coût estimé par an: <%= (d.avg_yearly_consumption * nbr * 0.0014).to_i %> €</li>
-                <li>Part de votre consommation :
-                  <span class="chart" data-percent=<%= ((d.avg_yearly_consumption * nbr) / @total_conso * 100).to_i %>>
-                    <span class="percent"></span>
-                  </span>
-                </li>
-              </ul>
+      <div class="container">
+        <div class="row">
+          <% @devices_by_type.each do |id, nbr| %>
+          <% d = DeviceType.find(id) %>
+            <div class="col-xs-5 vignette">
+              <h3><%= d.name.capitalize %> : <%= nbr %> X </h3>
+              <%= image_tag(d.url, class: "small-image") %>
+              <p>Consommation annuelle (estimations)<p>
+              <table>
+                <tr>
+                  <td><div class="in-circle"><p><%= (d.avg_yearly_consumption * nbr / 1000).to_i %></p> kWh</div></td>
+                  <td><div class="in-circle"><p><%= (d.avg_yearly_consumption * nbr * 0.0014).to_i %></p> €</div></td>
+                  <td>
+                    <span class="chart" data-percent=<%= ((d.avg_yearly_consumption * nbr) / @total_conso * 100).to_i %>>
+                      <span class="percent"></span>
+                    </span>
+                  </td>
+                </tr>
+              </table>
             </div>
-            <div class="col-xs-3"><div class="image-device"><%= image_tag(d.url, class: "img-thumbnail") %></div></div>
-          </div>
+          <% end %>
         </div>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>
 
 <%= content_for(:js) do %>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-  <script src="../dist/easypiechart.js"></script>
     <script>
       $(function() {
         $('.chart').easyPieChart({
