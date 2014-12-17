@@ -18,24 +18,11 @@ class StatementsController < ApplicationController
   end
 
   def create_from_box
-    if @box_session.statements.count<=1 || @box_session.plateau?(statement_params[:power]) == false
-      @box_session.update(connected:true) if @box_session.statements.count==0
-      add_a_point
-      p "j'ai ajouté un point"
-    else # If power has not changed, we update the time of the last point
-      @box_session.statements.last.update(time_of_measure: statement_params[:time_of_measure])
-    p "je n'ai pas ajouté de point"
-    end
+    @box_session.treat_impulse(statement_params)
     redirect_to root_path
   end
 
   private
-
-  def add_a_point
-    @statement = Statement.new(statement_params)
-    @statement.box_session=@box_session
-    @statement.save
-  end
 
   def set_statement
     @statement = Statement.find(params[:id])

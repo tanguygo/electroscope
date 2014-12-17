@@ -6,12 +6,24 @@ class User < ActiveRecord::Base
   has_many :box_sessions, through: :flats
   has_many :devices, through: :flats
 
+  devise :database_authenticatable, :registerable,
+  :recoverable, :rememberable, :trackable, :validatable
+  devise :omniauthable, :omniauth_providers => [ :facebook ]
+
+  def last_box_session
+    return self.box_sessions.last
+  end
+
   def box
-    return self.box_sessions.last.box
+    return self.last_box_session.box
   end
 
   def statements
-    return self.box_sessions.last.statements
+    return self.last_box_session.statements
+  end
+
+  def flat
+    return self.flats.last
   end
 
   def sponsor
@@ -30,9 +42,13 @@ class User < ActiveRecord::Base
     end
   end
 
-  devise :database_authenticatable, :registerable,
-  :recoverable, :rememberable, :trackable, :validatable
-  devise :omniauthable, :omniauth_providers => [ :facebook ]
+  def send_activation_email
+    UserMailer.activation(self).deliver
+  end
+
+  def send_welcome_email
+    UserMailer.welcome(self).deliver
+  end
 
   def self.find_for_facebook_oauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -45,17 +61,6 @@ class User < ActiveRecord::Base
       user.token = auth.credentials.token
       user.token_expiry = Time.at(auth.credentials.expires_at)
     end
-  end
-
-  def flat
-    return self.flats.last
-  end
-
-  def send_activation_email
-    UserMailer.activation(self).deliver
-  end
-  def send_welcome_email
-    UserMailer.welcome(self).deliver
   end
 
 end
