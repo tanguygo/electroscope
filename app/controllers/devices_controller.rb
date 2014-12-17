@@ -3,16 +3,7 @@ class DevicesController < ApplicationController
   before_action :set_flat, only: [:index,:create_multiple]
 
   def index
-    @devices_by_type = {}
-    @total_conso = 0
-    current_user.devices.each do |d|
-      @total_conso += d.device_type.avg_yearly_consumption
-      if @devices_by_type[d.device_type_id].nil?
-        @devices_by_type[d.device_type_id] = 1
-      else
-        @devices_by_type[d.device_type_id] += 1
-      end
-    end
+    @flat.last_yearly_bill.nil? ? @price = 0.0014 : @price = @flat.kwh_price
   end
 
   def new
