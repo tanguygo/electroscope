@@ -2,8 +2,16 @@ class DevicesController < ApplicationController
   layout "dashboard"
 
   def index
-    @flat = current_user.flat
-    @devices = Device.where(flat_id: current_user.flat.id)
+    @devices_by_type = {}
+    @total_conso = 0
+    current_user.devices.each do |d|
+      @total_conso += d.device_type.avg_yearly_consumption
+      if @devices_by_type[d.device_type_id].nil?
+        @devices_by_type[d.device_type_id] = 1
+      else
+        @devices_by_type[d.device_type_id] += 1
+      end
+    end
   end
 
 
