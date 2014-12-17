@@ -1,26 +1,23 @@
 class SponsorshipsController < ApplicationController
   before_action :set_user, only: [:show, :create]
+  before_action :set_sponsorship_as_giver, only: [:show,:new]
   layout "dashboard"
 
   def show
-    @sponsorship = Sponsorship.find_by(giver_id: current_user)
   end
 
   def new
-    if Sponsorship.find_by(giver_id: current_user)
-      @sponsorship = Sponsorship.find_by(giver_id: current_user)
-      redirect_to sponsorship_path(@sponsorship)
-    else
+    if @sponsorship.nil?
       @sponsorship = Sponsorship.new
+    else
+      redirect_to sponsorship_path(@sponsorship)
     end
   end
 
   def create
-    @sponsorship = Sponsorship.new(sponsor_params)
+    @sponsorship = @user.box.sponsorships.new(sponsor_params)
     @sponsorship.giver_id = @user.id
-    @sponsorship.box_id = @user.box
     @sponsorship.status = "active"
-
     if @sponsorship.save
       redirect_to profile_path(@user)
     else
@@ -36,6 +33,10 @@ class SponsorshipsController < ApplicationController
 
   def set_user
     @user = current_user
+  end
+
+  def set_sponsorship_as_giver
+    @sponsorship = Sponsorship.find_by(giver_id: current_user)
   end
 end
 

@@ -12,30 +12,29 @@ class FlatsController < ApplicationController
   end
 
   def create
-    @flat = Flat.new(flat_params)
-    @flat.user = current_user
-      if @flat.save
-        redirect_to new_flat_device_path(@flat.id)
-      else
-        render :new
-      end
+    @flat = current_user.flats.create(flat_params)
+    authorize @flat
+    if @flat.save
+      redirect_to new_flat_device_path(@flat.id)
+    else
+      render :new
+    end
   end
 
   def edit
   end
 
   def update
-    @flat.update(flat_params)
-      if @flat.save
-        redirect_to new_flat_device_path(@flat.id)
-      else
-        render :edit
-      end
+    if @flat.update(flat_params)
+      redirect_to new_flat_device_path(@flat.id)
+    else
+      render :edit
+    end
   end
 
   def destroy
     @flat.destroy
-    redirect_to flats_path
+    redirect_to root_path
   end
 
   private
