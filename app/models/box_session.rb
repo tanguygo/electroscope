@@ -1,7 +1,7 @@
 class BoxSession < ActiveRecord::Base
   belongs_to :flat
   belongs_to :box
-  has_many :statements
+  has_many :statements, dependent: :destroy
   has_many :sponsorships, through: :box
 
   after_create :check_if_sponsored
@@ -28,12 +28,24 @@ class BoxSession < ActiveRecord::Base
     self.statements.create(statement_params)
   end
 
+  def consumption_last_24h
+    return
+
+  end
+
+  def consumption_last_week
+
+  end
+
+
+
   def user
     return self.flat.user
   end
 
   def plateau?(power)
-    return self.statements[-1].power.to_i==self.statements[-2].power.to_i && self.statements[-1].power.to_i==power.to_i
+    return false
+    # return self.statements[-1].power.to_i==self.statements[-2].power.to_i && self.statements[-1].power.to_i==power.to_i
   end
 
   def check_if_sponsored

@@ -4,6 +4,7 @@ class StatementsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :create_from_box
   skip_before_action :authenticate_user!, only: [:create_from_box,:index]
   after_action :verify_policy_scoped, :only => :index
+  layout "dashboard"
 
   def index
     @statements=policy_scope(Statement).order(created_at: :desc)

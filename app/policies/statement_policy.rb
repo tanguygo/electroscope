@@ -13,13 +13,7 @@ class StatementPolicy < ApplicationPolicy
     end
 
     def resolve
-      if user
-        if user.admin?
-          scope.all
-        else
-          user.statements
-        end
-      end
+      user.statements
     end
   end
 end

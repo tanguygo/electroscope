@@ -1,0 +1,4 @@
+fr:
+  time:
+    formats:
+      date_with_time: "%H:%M le %d %b %Y"
