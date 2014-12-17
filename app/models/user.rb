@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :orders
   has_many :box_sessions, through: :flats
   has_many :devices, through: :flats
+  has_many :device_types, through: :devices
 
   def box
     return self.box_sessions.last.box
