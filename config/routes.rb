@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
   resources :orders
-  get "/statements/create_from_box", to: "statements#create_from_box"
+  # pour créer localement, uncomment next line
+  # get "/statements/create_from_box", to: "statements#create_from_box"
+  post "/statements/create_from_box", to: "statements#create_from_box"
   resources :statements, only: [:index]
   resources :profiles, only: [:show, :edit, :update]
   resources :sponsorships, only: [:show, :new, :create]
@@ -16,3 +18,5 @@ Rails.application.routes.draw do
   get "/:page", to: "pages#show"
 
 end
+
+

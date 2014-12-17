@@ -9,9 +9,9 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   # local exceptions (at development stage) are not intercepted, so as to correct bugs with the debugger
-  unless Rails.application.config.consider_all_requests_local
-   rescue_from Exception, with: :handle_exception
-  end
+  # unless Rails.application.config.consider_all_requests_local
+  #  rescue_from Exception, with: :handle_exception
+  # end
 
   private
 

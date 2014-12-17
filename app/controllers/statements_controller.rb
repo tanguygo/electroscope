@@ -2,17 +2,17 @@ class StatementsController < ApplicationController
   before_action :set_statement, only: [:show, :edit, :update]
   before_action :set_box_session, only: [:create_from_box]
   skip_before_action :verify_authenticity_token, only: :create_from_box
+  skip_before_action :authenticate_user!, only: [:create_from_box,:index]
   after_action :verify_policy_scoped, :only => :index
 
   def index
     @statements=policy_scope(Statement).order(created_at: :desc)
-    authorize @statements
     @points={"cols"=>[
     {"id"=>"Date","label"=>"Date","type"=>"datetime"},
     {"id"=>"Power","label"=>"Puissance","type"=>"number"}],
     "rows"=>[]}
     @statements.each{|s|
-      row=[{'v'=>"#{s.time_of_measure.to_f+8*3600}"},{'v'=> "#{s.power}"}]
+      row=[{'v'=>"#{s.time_of_measure.to_f+7*3600}"},{'v'=> "#{s.power}"}]
       @points["rows"]<<{"c"=>row}
     }
   end
@@ -21,10 +21,12 @@ class StatementsController < ApplicationController
     if @box_session.statements.count<=1 || @box_session.plateau?(statement_params[:power]) == false
       @box_session.update(connected:true) if @box_session.statements.count==0
       add_a_point
+      p "j'ai ajouté un point"
     else # If power has not changed, we update the time of the last point
       @box_session.statements.last.update(time_of_measure: statement_params[:time_of_measure])
+    p "je n'ai pas ajouté de point"
     end
-    redirect_to statements_path
+    redirect_to root_path
   end
 
   private
