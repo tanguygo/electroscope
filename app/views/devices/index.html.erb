@@ -4,18 +4,17 @@
     <div class="col-xs-12">
       <div class="container">
         <div class="row">
-          <% @devices_by_type.each do |id, nbr| %>
-          <% d = DeviceType.find(id) %>
+          <% @flat.device_types.each do |d| %>
             <div class="col-xs-5 vignette">
-              <h3><%= d.name.capitalize %> : <%= nbr %> X </h3>
+              <h3><%= d.name.capitalize %> : <%= occ = occurences(@flat.devices, d) %> X </h3>
               <%= image_tag(d.url, class: "small-image") %>
               <p>Consommation annuelle (estimations)<p>
               <table>
                 <tr>
-                  <td><div class="in-circle"><p><%= (d.avg_yearly_consumption * nbr / 1000).to_i %></p> kWh</div></td>
-                  <td><div class="in-circle"><p><%= (d.avg_yearly_consumption * nbr * 0.0014).to_i %></p> €</div></td>
+                  <td><div class="in-circle"><p><%= (d.avg_yearly_consumption * occ / 1000).to_i %></p> kWh</div></td>
+                  <td><div class="in-circle"><p><%= (d.avg_yearly_consumption * occ * @price).to_i %></p> €</div></td>
                   <td>
-                    <span class="chart" data-percent=<%= ((d.avg_yearly_consumption * nbr) / @total_conso * 100).to_i %>>
+                    <span class="chart" data-percent=<%= (d.avg_yearly_consumption * occ / 1000 ) / @flat.total_conso_kwh * 100 %>>
                       <span class="percent"></span>
                     </span>
                   </td>
@@ -30,19 +29,19 @@
 </div>
 
 <%= content_for(:js) do %>
-    <script>
-      $(function() {
-        $('.chart').easyPieChart({
-          easing: 'easeOutBounce',
-          onStep: function(from, to, percent) {
-            $(this.el).find('.percent').text(Math.round(percent));
-          }
-        });
-        var chart = window.chart = $('.chart').data('easyPieChart');
-        $('.js_update').on('click', function() {
-          chart.update(Math.random()*200-100);
-        });
+  <script>
+    $(function() {
+      $('.chart').easyPieChart({
+        easing: 'easeOutBounce',
+        onStep: function(from, to, percent) {
+          $(this.el).find('.percent').text(Math.round(percent));
+        }
       });
-      </script>
-  <% end %>
+      var chart = window.chart = $('.chart').data('easyPieChart');
+      $('.js_update').on('click', function() {
+        chart.update(Math.random()*200-100);
+      });
+    });
+    </script>
+<% end %>
 
