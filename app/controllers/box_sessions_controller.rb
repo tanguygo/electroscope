@@ -6,7 +6,7 @@ class BoxSessionsController < ApplicationController
     @box_session = @box.box_sessions.new(flat:current_user.flat)
     if @box_session.save
       @box_session.activate
-      redirect_to root_path
+      redirect_to flat_devices_path(current_user.flat)
     else
       render :new, alert: @box_session.errors.full_messages.join('-')
     end
