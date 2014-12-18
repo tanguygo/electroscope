@@ -3,7 +3,7 @@ class DevicesController < ApplicationController
   before_action :set_flat, only: [:index,:create_multiple]
 
   def index
-    @devices = @flat.devices
+    @flat.last_yearly_bill.nil? ? @price = 0.0014 : @price = @flat.kwh_price
   end
 
   def new

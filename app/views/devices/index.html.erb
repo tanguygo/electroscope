@@ -2,24 +2,46 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <% @devices.each do |d| %>
-        <div class="device-border">
-          <div class="row">
-            <div class="col-xs-8">
-              <ul>
-                <h3><%= d.name.capitalize %></h3>
-                <li>Consommation journalière moyenne <%= d.device_type.avg_daily_consumption %></li>
-                <li>Consommation annuelle moyenne <%= d.device_type.avg_yearly_consumption %></li>
-                <li>Coût par utilisation :</li>
-                <li>Coût estimé par an: </li>
-                <li>Pollution estimée par an:</li>
-              </ul>
+      <div class="container">
+        <div class="row">
+          <% @flat.device_types.each do |d| %>
+            <div class="col-xs-5 vignette">
+              <h3><%= d.name.capitalize %> : <%= occ = occurences(@flat.devices, d) %> X </h3>
+              <%= image_tag(d.url, class: "small-image") %>
+              <p>Consommation annuelle (estimations)<p>
+              <table>
+                <tr>
+                  <td><div class="in-circle"><p><%= (d.avg_yearly_consumption * occ / 1000).to_i %></p> kWh</div></td>
+                  <td><div class="in-circle"><p><%= (d.avg_yearly_consumption * occ * @price).to_i %></p> €</div></td>
+                  <td>
+                    <span class="chart" data-percent=<%= (d.avg_yearly_consumption * occ / 1000 ) / @flat.total_conso_kwh * 100 %>>
+                      <span class="percent"></span>
+                    </span>
+                  </td>
+                </tr>
+              </table>
             </div>
-            <div class="col-xs-3"><div class="image-device"><%= image_tag(d.device_type.url, class: "img-thumbnail") %></div></div>
-          </div>
+          <% end %>
         </div>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>
+
+<%= content_for(:js) do %>
+  <script>
+    $(function() {
+      $('.chart').easyPieChart({
+        easing: 'easeOutBounce',
+        onStep: function(from, to, percent) {
+          $(this.el).find('.percent').text(Math.round(percent));
+        }
+      });
+      var chart = window.chart = $('.chart').data('easyPieChart');
+      $('.js_update').on('click', function() {
+        chart.update(Math.random()*200-100);
+      });
+    });
+    </script>
+<% end %>
 
