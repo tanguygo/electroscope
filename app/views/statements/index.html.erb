@@ -1,9 +1,9 @@
 <% content_for :heading, "Ma consommation globale" %>
-<div class="container">
+<div class="container text-center">
   <div class="panel panel-default">
     <div class="panel-body">
       <div class="row">
-        <div class="col-xs-12 col-sm-10 col-sm-offset-1 text-center">
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1 ">
           <% if  @statements.size >= 1  %>
           <p>Votre électroscope est bien connecté. La dernière mesure (<%= @statements.last.power.to_i %> W) a été relevée à <%= l(DateTime.now, format: :date_with_time) %></p>
           <div class="row ">
@@ -12,11 +12,11 @@
             </div>
           </div>
           <div class="row">
-            <div class="spacer-20"></div>
+            <div class="col-xs-12 spacer-20"></div>
           </div>
           <div class="row">
             <div class="col-xs-12 col-sm-6">
-              <div id="photo" style="width: 350px; height: 225px;"></div>
+              <%= render partial: "agregates_table.html"%>
             </div>
             <div class="col-xs-12 col-sm-6">
               <div id="barchart_material" style="width: 350px; height: 225px;"></div>
