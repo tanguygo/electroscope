@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   # get "/statements/create_from_box", to: "statements#create_from_box"
   post "/statements/create_from_box", to: "statements#create_from_box"
   resources :statements, only: [:index]
-  get "/bidon", to: "statements#bidon"
   resources :profiles, only: [:show, :edit, :update]
   resources :sponsorships, only: [:show, :new, :create]
   get "/activation", to: "box_sessions#new"

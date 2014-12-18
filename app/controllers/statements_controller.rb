@@ -18,9 +18,10 @@ class StatementsController < ApplicationController
       row=[{'v'=>"#{s.time_of_measure.to_f+7*3600}"},{'v'=> "#{s.power}"}]
       @points["rows"]<<{"c"=>row}
     }
-  end
-
-  def bidon
+    @days={"cols"=>[
+    {"id"=>"Day","label"=>"","type"=>"string"},
+    {"id"=>"Power","label"=>"Energie","type"=>"number"}],
+    "rows"=>[]}
   end
 
   def create_from_box
