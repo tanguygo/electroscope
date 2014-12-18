@@ -36,9 +36,9 @@ class BoxSession < ActiveRecord::Base
       last_24h: [DateTime.now()-1.day,DateTime.now()],
       today: [DateTime.now.beginning_of_day(),DateTime.now.end_of_day()]
     }
-    %w(monday tuesday wednesday thursday friday saturday sunday).each do |day|
-       energy_counters_limits[day.to_sym]=[start_day(day),end_day(day)]
-    end
+    (0..6).to_a.each{|nb_days_behind|
+      energy_counters_limits[nb_days_behind]=[start_wday(nb_days_behind),start_wday(nb_days_behind)+1.day]
+    }
 
     energy_counters_limits.each{|period,limits|
       energy_counters[period] = compute_energy_from_statements({statements: statements,limits: limits})
@@ -68,12 +68,8 @@ class BoxSession < ActiveRecord::Base
 
   private
 
-  def start_day(day)
-    Date.today.beginning_of_week(day.to_sym).midnight
-  end
-
-  def end_day(day)
-    Date.today.beginning_of_week(day.to_sym).tomorrow.midnight
+  def start_wday(nb_days_behind)
+    (Date.today - nb_days_behind).midnight
   end
 
   def compute_energy_from_statements(attributes={})

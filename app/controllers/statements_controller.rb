@@ -10,18 +10,34 @@ class StatementsController < ApplicationController
   def index
     @statements=policy_scope(Statement).order(created_at: :desc)
     @energy_counters = current_user.last_box_session.compute_energy_counters
-    @points={"cols"=>[
-    {"id"=>"Date","label"=>"Date","type"=>"datetime"},
-    {"id"=>"Power","label"=>"Puissance","type"=>"number"}],
-    "rows"=>[]}
-    @statements.each{|s|
+    @points=live_chart_json(@statements)
+    @days=hist_chart_json(@energy_counters)
+  end
+
+  def live_chart_json(statements)
+    points={"cols"=>[
+      {"id"=>"Date","label"=>"Date","type"=>"datetime"},
+      {"id"=>"Power","label"=>"Puissance","type"=>"number"}],
+      "rows"=>[]}
+    statements.each{|s|
       row=[{'v'=>"#{s.time_of_measure.to_f+7*3600}"},{'v'=> "#{s.power}"}]
-      @points["rows"]<<{"c"=>row}
+      points["rows"]<<{"c"=>row}
     }
-    @days={"cols"=>[
-    {"id"=>"Day","label"=>"","type"=>"string"},
-    {"id"=>"Power","label"=>"Energie","type"=>"number"}],
-    "rows"=>[]}
+    return points
+  end
+
+  def hist_chart_json(energy_counters)
+    days={"cols"=>[
+      {"id"=>"Day","label"=>"","type"=>"string"},
+      {"id"=>"Power","label"=>"Energie","type"=>"number"}],
+      "rows"=>[]}
+    (0..6).to_a.reverse.each{|nb_days_behind|
+      weekday = (Date.today - nb_days_behind.days).strftime("%A")
+      row=[{'v'=>"#{weekday}"},{'v'=> "#{energy_counters[nb_days_behind]}"}]
+      days["rows"]<<{"c"=>row}
+    }
+    p days
+    return days
   end
 
   def create_from_box
