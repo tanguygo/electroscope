@@ -1,24 +1,13 @@
 class Statement < ActiveRecord::Base
   require 'date'
   belongs_to :box_session
-  scope :last_24h, -> {where("time_of_measure > #{DateTime.now()-1}")}
-  scope :today, -> {where("time_of_measure > #{DateTime.now.beginning_of_day()}")}
-  scope :last_week, -> {where("time_of_measure > #{DateTime.now()-7}")}
-
+  scope :last_24h, -> {where('time_of_measure > ? AND time_of_measure <= ?', DateTime.now()-1.day,DateTime.now())}
+  scope :last_week, -> {where('time_of_measure > ? AND time_of_measure <= ?', DateTime.now()-7.days,DateTime.now())}
+  scope :today, -> {where('time_of_measure > ?', DateTime.now.beginning_of_day())}
+  # on n'utilisera pas les scopes correspondant à une journée pour ne pas multiplier les appels à la base
+  # à la place on utilisera last_week (ou last_month) et on fera des calculs dans le modèle boxSession
   %w(monday tuesday wednesday thursday friday saturday sunday).each do |day|
-     scope ("last " + day).to_sym, where(last_day_string_generator(day))
-   end
-
-  # scope :last_monday, -> {where("time_of_measure > Time.now()-7*24*3600")}
-  # scope :last_tuesday, -> {where("time_of_measure > Time.now()-7*24*3600")}
-  # scope :last_wednesday, -> {where("time_of_measure > Time.now()-7*24*3600")}
-  # scope :last_thursday, -> {where("time_of_measure > Time.now()-7*24*3600")}
-  # scope :last_friday, -> {where("time_of_measure > Time.now()-7*24*3600")}
-  # scope :last_saturday, -> {where("time_of_measure > Time.now()-7*24*3600")}
-  # scope :last_sunday, -> {where("time_of_measure > Time.now()-7*24*3600")}
-
-  def last_day_string_generator(day)
-    return "time_of_measure > #{Date.today.beginning_of_week(:day}).midnight-7*24*3600} AND time_of_measure <=  Date.today.beginning_of_week(:#{day}).tomorrow.midnight-7*24*3600"
+     scope ("last_" + day).to_sym, -> {where('time_of_measure > ? AND time_of_measure <= ?',start_day(day),end_day(day) )}
   end
 
   def user

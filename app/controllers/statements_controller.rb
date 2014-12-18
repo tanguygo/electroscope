@@ -1,13 +1,16 @@
 class StatementsController < ApplicationController
   before_action :set_statement, only: [:show, :edit, :update]
-  before_action :set_box_session, only: [:create_from_box]
+  before_action :set_box_session, only: [:create_from_box, :index]
   skip_before_action :verify_authenticity_token, only: :create_from_box
   skip_before_action :authenticate_user!, only: [:create_from_box,:index]
   after_action :verify_policy_scoped, :only => :index
   layout "dashboard"
 
+
   def index
     @statements=policy_scope(Statement).order(created_at: :desc)
+    @energy_counters = @box_session.compute_energy_counters
+    raise
     @points={"cols"=>[
     {"id"=>"Date","label"=>"Date","type"=>"datetime"},
     {"id"=>"Power","label"=>"Puissance","type"=>"number"}],

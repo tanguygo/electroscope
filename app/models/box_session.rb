@@ -28,16 +28,23 @@ class BoxSession < ActiveRecord::Base
     self.statements.create(statement_params)
   end
 
-  def consumption_last_24h
-    return
+  def compute_energy_counters
+    statements = self.statements.last_week
+    energy_counters=Hash.new
+    energy_counters[:last_week] = compute_energy_from_statements({statements: statements})
+    energy_counters_limits = {
+      last_24h: [DateTime.now()-1.day,DateTime.now()],
+      today: [DateTime.now.beginning_of_day(),DateTime.now.end_of_day()]
+    }
+    %w(monday tuesday wednesday thursday friday saturday sunday).each do |day|
+       energy_counters_limits[day.to_sym]=[start_day(day),end_day(day)]
+    end
 
+    energy_counters_limits.each{|period,limits|
+      energy_counters[period] = compute_energy_from_statements({statements: statements,limits: limits})
+    }
+    return energy_counters
   end
-
-  def consumption_last_week
-
-  end
-
-
 
   def user
     return self.flat.user
@@ -58,4 +65,23 @@ class BoxSession < ActiveRecord::Base
     UserMailer.activation(self).deliver
   end
 
+
+  private
+
+  def start_day(day)
+    Date.today.beginning_of_week(day.to_sym).midnight
+  end
+
+  def end_day(day)
+    Date.today.beginning_of_week(day.to_sym).tomorrow.midnight
+  end
+
+  def compute_energy_from_statements(attributes={})
+    #si une impulsion correspond à 1kwh, il suffit de sommer les points pour connaître
+    #l'énergie consommée. s'il y a des interruptions, il faut calculer une intégrale à partir
+    #des points disponibles
+    return attributes[:statements].size unless attributes.key?(:limits)
+    return attributes[:statements].select{|statement| statement.time_of_measure >\
+     attributes[:limits][0] && statement.time_of_measure <= attributes[:limits][1]}.size
+  end
 end
