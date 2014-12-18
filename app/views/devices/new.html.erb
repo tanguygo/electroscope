@@ -8,7 +8,7 @@
           <div id="our-devices">
             <% @device_types.each do |d| %>
               <div class="col-xs-2 my-device">
-                <div class="title-device"><%= d.name %></div>
+                <div class="title-device"><%= d.name.capitalize %></div>
                 <div class="id-device hidden"><%= d.id %></div>
                 <div class="image-device"><%= image_tag(d.url, class: "img-thumbnail device") %></div>
                 <div class="image-device"><%= image_tag( "devices/delete.png", class: "img-thumbnail delete hidden") %></div>

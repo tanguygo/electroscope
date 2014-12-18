@@ -16,21 +16,21 @@
   border: none;
   padding: none;
   border-radius: 20px;
-  margin-top: 15px;
 }
 
 .my-device {
   display: inline-block;
-  height: 150px;
+  height: 100px;
   margin: 5px;
   border: 1px solid #dddddd;
-
 }
 
 
 #my-house {
   border: 2px solid black;
   align-content: center;
+  margin-top: 50px;
+  min-height: 400px;
 }
 
 #background_pop_up {
@@ -51,9 +51,6 @@
   text-align: center;
 }
 
-#my-house {
-  min-height: 400px;
-}
 
 #send {
   width: 100%;
@@ -101,6 +98,21 @@
   }
 }
 
+.global {
+  width: 87.5%;
+  padding: 15px;
+
+  table {
+    margin: auto;
+    width: 50%;
+    height: 150px;
+    text-align: center;
+  }
+
+  h3 {
+    padding-right: 30px;
+  }
+}
 
 
 // Style pour les graphiques (Donuts)
