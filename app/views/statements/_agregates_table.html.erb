@@ -1,0 +1,33 @@
+<table class="smooth_table" cellspacing='0'> <!-- cellspacing='0' is important, must stay -->
+
+  <thead>
+    <tr>
+      <th>Période</th>
+      <th>Consommation</th>
+      <th>Dépense</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <tr>
+      <td>Aujourd'hui</td>
+      <td> <%= @energy_counters[:today] %> Wh</td>
+
+      <td> <%= @energy_counters[:today]/1000*0.14 %> €</td>
+    </tr><!-- Table Row -->
+
+    <tr class="even">
+      <td>24 heures</td>
+      <td> <%= @energy_counters[:last_24h] %> Wh</td>
+      <td> <%= @energy_counters[:last_24h]/1000*0.14 %> €</td>
+    </tr><!-- Darker Table Row -->
+
+    <tr>
+      <td>7 jours</td>
+      <td> <%= @energy_counters[:last_week] %> Wh</td>
+      <td> <%= @energy_counters[:last_week]/1000*0.14 %> €</td>
+    </tr>
+
+  </tbody>
+</table>

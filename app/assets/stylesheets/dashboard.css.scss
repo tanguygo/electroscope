@@ -6,6 +6,7 @@
 @import "footer";
 @import "flats";
 @import "orders";
+@import "smooth_table";
 
 
 body {
@@ -32,6 +33,10 @@ h3 {
 
 .spacer-100 {
   height: 100px;
+}
+
+.spacer-20 {
+  height: 20px;
 }
 
 #logo img {
