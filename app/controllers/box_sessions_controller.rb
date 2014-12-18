@@ -20,7 +20,10 @@ class BoxSessionsController < ApplicationController
   private
 
   def set_box
-    @box = Box.find_by_internal_ref(box_params[:internal_ref])
+    if (@box = Box.find_by_internal_ref(box_params[:internal_ref])).nil?
+      flash[:alert] = "Le code d'activation n'a pas été reconnu."
+      redirect_to activation_path
+    end
   end
 
   def box_params
