@@ -3,16 +3,23 @@
   <div class="panel panel-default">
     <div class="panel-body">
       <div class="row">
-        <div class="col-xs-12 col-sm-8 col-sm-offset-2 ">
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1 text-center">
           <% if  @statements.size >= 1  %>
-          <h2>Suivi en temps réel ! </h2>
-          <p>Votre électroscope est bien connecté aux serveurs de notre équipe. La dernière mesure (<%= @statements.last.power.to_i %> W) a été relevée à <%= l(DateTime.now, format: :date_with_time) %></p>
+          <p>Votre électroscope est bien connecté. La dernière mesure (<%= @statements.last.power.to_i %> W) a été relevée à <%= l(DateTime.now, format: :date_with_time) %></p>
+          <div class="row ">
+            <div class="col-xs-12 col-sm-12">
+              <div id="live_chart_div" style="width: 700px; height: 275px;"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="spacer-20"></div>
+          </div>
           <div class="row">
             <div class="col-xs-12 col-sm-6">
-              <div id="live_chart_div"></div>
+              <div id="photo" style="width: 350px; height: 225px;"></div>
             </div>
             <div class="col-xs-12 col-sm-6">
-              <div id="barchart_material" style="width: 400px; height: 200px;"></div>
+              <div id="barchart_material" style="width: 350px; height: 225px;"></div>
             </div>
           </div>
           <% else   %>
@@ -62,8 +69,6 @@
     var live_data = new google.visualization.DataTable(points_json);
 
     var options = {
-      width: 400,
-      height: 200,
       displayAnnotations: true,
       title: "Puissance globale instantanée (en W)"
     };
