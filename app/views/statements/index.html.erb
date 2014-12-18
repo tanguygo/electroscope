@@ -6,9 +6,15 @@
         <div class="col-xs-12 col-sm-8 col-sm-offset-2 ">
           <% if  @statements.size >= 1  %>
           <h2>Suivi en temps réel ! </h2>
-          <p>La dernière mesure (<%= @statements.last.power.to_i %> W) a été relevée à <%= l(DateTime.now, format: :date_with_time) %></p>
-          <div id="live_chart_div"></div>
-          <div id="barchart_material" style="width: 400px; height: 200px;"></div>
+          <p>Votre électroscope est bien connecté aux serveurs de notre équipe. La dernière mesure (<%= @statements.last.power.to_i %> W) a été relevée à <%= l(DateTime.now, format: :date_with_time) %></p>
+          <div class="row">
+            <div class="col-xs-12 col-sm-6">
+              <div id="live_chart_div"></div>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+              <div id="barchart_material" style="width: 400px; height: 200px;"></div>
+            </div>
+          </div>
           <% else   %>
           <p>Votre électroscope n'a pas encore envoyé de relevé. A priori, deux causes peuvent expliquer cela :</p>
           <ul>
@@ -56,8 +62,8 @@
     var live_data = new google.visualization.DataTable(points_json);
 
     var options = {
-      width: 600,
-      height: 300,
+      width: 400,
+      height: 200,
       displayAnnotations: true,
       title: "Puissance globale instantanée (en W)"
     };
@@ -67,28 +73,30 @@
   }
 
   function drawHistChart(){
-     var data = google.visualization.arrayToDataTable([
-      ['', 'Kwh'],
-      ['2014', 1000],
-      ['2015', 1170],
-      ['2016', 660],
-      ['2017', 1030]
-      ]);
+   var days_json = <%= raw @days.to_json %>;
+   var hist_data = new google.visualization.DataTable(days_json);
+   console.log(hist_data)
 
-    var options = {
-      chart: {
-        title: 'Semaine glissante',
-        subtitle: 'Consommation en kwh',
-      },
-          bars: 'horizontal' // Required for Material Bar Charts.
-        };
+   var test_data = google.visualization.arrayToDataTable([
+    ['', 'Kwh'],
+    ['2014', 1000],
+    ['2015', 1170],
+    ['2016', 660],
+    ['2017', 1030]
+    ]);
+   console.log(test_data)
 
-        var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+   var options = {
+    legend: { position: "none" },
+      bars: 'horizontal' // Required for Material Bar Charts.
+    };
 
-        chart.draw(data, options);
-      }
-      </script>
-      <% end  %>
+    var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+
+    chart.draw(hist_data, options);
+  }
+  </script>
+  <% end  %>
 
 
 

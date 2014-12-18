@@ -6,7 +6,6 @@ class StatementsController < ApplicationController
   after_action :verify_policy_scoped, :only => :index
   layout "dashboard"
 
-
   def index
     @statements=policy_scope(Statement).order(created_at: :desc)
     @energy_counters = current_user.last_box_session.compute_energy_counters
@@ -32,11 +31,10 @@ class StatementsController < ApplicationController
       {"id"=>"Power","label"=>"Energie","type"=>"number"}],
       "rows"=>[]}
     (0..6).to_a.reverse.each{|nb_days_behind|
-      weekday = (Date.today - nb_days_behind.days).strftime("%A")
-      row=[{'v'=>"#{weekday}"},{'v'=> "#{energy_counters[nb_days_behind]}"}]
+      weekday = I18n.l((Date.today - nb_days_behind.days), format: :day)
+      row=[{'v'=>weekday},{'v'=> "#{energy_counters[nb_days_behind]}"}]
       days["rows"]<<{"c"=>row}
     }
-    p days
     return days
   end
 
