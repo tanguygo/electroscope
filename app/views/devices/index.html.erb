@@ -4,11 +4,27 @@
     <div class="col-xs-12">
       <div class="container">
         <div class="row">
+          <div class="vignette global">
+            <h3>Consommation annuelles (estimations)</h3>
+            <%= link_to "Ajouter des appareils", new_flat_device_path , class:"btn btn-success text-center" %>
+            <table>
+              <tr>
+                <td><div class="in-circle"><p><%= @flat.total_conso_kwh %></p> kWh</div></td>
+                <td><div class="in-circle"><p><%= @flat.last_yearly_bill %></p> €</div></td>
+                <td>
+                  <span class="chart" data-percent= "100" >
+                    <span class="percent"></span>
+                  </span>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="row">
           <% @flat.device_types.each do |d| %>
             <div class="col-xs-5 vignette">
               <h3><%= d.name.capitalize %> : <%= occ = occurences(@flat.devices, d) %> X </h3>
               <%= image_tag(d.url, class: "small-image") %>
-              <p>Consommation annuelle (estimations)<p>
               <table>
                 <tr>
                   <td><div class="in-circle"><p><%= (d.avg_yearly_consumption * occ / 1000).to_i %></p> kWh</div></td>
