@@ -1,66 +1,108 @@
-<h1>Impulsions reçues</h1>
+<% content_for :heading, "Ma consommation globale" %>
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1 text-center">
+          <% if  @statements.size >= 1  %>
+          <p>Votre électroscope est bien connecté. La dernière mesure (<%= @statements.last.power.to_i %> W) a été relevée à <%= l(DateTime.now, format: :date_with_time) %></p>
+          <div class="row ">
+            <div class="col-xs-12 col-sm-12">
+              <div id="live_chart_div" style="width: 700px; height: 275px;"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="spacer-20"></div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-6">
+              <div id="photo" style="width: 350px; height: 225px;"></div>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+              <div id="barchart_material" style="width: 350px; height: 225px;"></div>
+            </div>
+          </div>
+          <% else   %>
+          <p>Votre électroscope n'a pas encore envoyé de relevé. A priori, deux causes peuvent expliquer cela :</p>
+          <ul>
+            <li>Votre boîtier n'est pas installé. Consulter le guide pour procéder à l'installation.</li>
+            <li>Votre boîtier est défectueux. Contactez notre service client.</li>
+          </ul>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<div id="chart_div"></div>
-
-<table>
-  <thead>
-    <tr>
-      <th>Heure de la mesure</th>
-      <th>Pulse</th>
-      <th>Power</th>
-      <th>Numéro interne de l'électroscope</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @statements.each do |statement| %>
-      <tr>
-        <td><%= statement.time_of_measure %></td>
-        <td><%= statement.pulse %></td>
-        <td><%= statement.power %></td>
-        <td><%= statement.box_session.box.internal_ref %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+<% content_for(:before_js) do%>
 <!--Load the AJAX API-->
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript">
 
   // Load the Visualization API and the chart package.
-  google.load('visualization', '1', {'packages':['annotatedtimeline']});
+  google.load('visualization', '1.1', {'packages':['annotatedtimeline','bar']});
 
   // Set a callback to run when the Google Visualization API is loaded.
-  google.setOnLoadCallback(drawChart);
+  google.setOnLoadCallback(drawCharts);
 
   // Callback that creates and populates a data table,
   // instantiates the pie chart, passes in the data and
   // draws it.
-  function drawChart() {
+  function drawCharts(){
+    drawHistChart()
+    drawLiveChart()
+  }
+
+  function drawLiveChart() {
 
     // Create the data table.
     var points_json = <%= raw @points.to_json %>;
     //
     // console.log("********************")
 
-for ( var i = 0; i < points_json.rows.length; i++ ) {
-    points_json.rows[i].c[0].v = new Date(points_json.rows[i].c[0].v * 1000 );
-}
-console.log(points_json);
+    for ( var i = 0; i < points_json.rows.length; i++ ) {
+      points_json.rows[i].c[0].v = new Date(points_json.rows[i].c[0].v * 1000 );
+    }
+    console.log(points_json);
 
-    var data = new google.visualization.DataTable(points_json);
+    var live_data = new google.visualization.DataTable(points_json);
 
     var options = {
-        width: 1000,
-        height: 563,
-             displayAnnotations: true
-           };
-
+      displayAnnotations: true,
+      title: "Puissance globale instantanée (en W)"
+    };
     // Instantiate and draw our chart, passing in some options.
-    var chart = new google.visualization.AnnotatedTimeLine(document.getElementById('chart_div'));
-    chart.draw(data, options);
+    var live_chart = new google.visualization.AnnotatedTimeLine(document.getElementById('live_chart_div'));
+    live_chart.draw(live_data, options);
   }
-</script>
+
+  function drawHistChart(){
+   var days_json = <%= raw @days.to_json %>;
+   var hist_data = new google.visualization.DataTable(days_json);
+   console.log(hist_data)
+
+   var test_data = google.visualization.arrayToDataTable([
+    ['', 'Kwh'],
+    ['2014', 1000],
+    ['2015', 1170],
+    ['2016', 660],
+    ['2017', 1030]
+    ]);
+   console.log(test_data)
+
+   var options = {
+    legend: { position: "none" },
+      bars: 'horizontal' // Required for Material Bar Charts.
+    };
+
+    var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+
+    chart.draw(hist_data, options);
+  }
+  </script>
+  <% end  %>
+
+
+
 

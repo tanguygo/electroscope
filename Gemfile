@@ -40,6 +40,7 @@ gem 'spring',        group: :development
 
 # user management
 gem 'devise'
+gem 'devise-i18n'
 # Devise with fb-omniauth extension
 gem 'omniauth-facebook'
 # For extended use of fb API (getting user's friends infos, posting on his wall..)
@@ -67,3 +68,4 @@ gem 'country_select' #asked by active_admin to manage countries
 
 gem "letter_opener", group: :development
 gem "pundit"
+gem 'rails-i18n'
