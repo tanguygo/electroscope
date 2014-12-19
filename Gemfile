@@ -69,3 +69,4 @@ gem 'country_select' #asked by active_admin to manage countries
 gem "letter_opener", group: :development
 gem "pundit"
 gem 'rails-i18n'
+gem "rails-erd"

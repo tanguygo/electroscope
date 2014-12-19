@@ -24,14 +24,6 @@ order2=Order.create(creation_date:"06/04/1984".to_datetime, status:"delivered",c
 # localhost:3000/statements/create_from_box?token=user1&&pulse=48&&time_of_measure=2014-12-15T10:58:07.186&&power=800
 # localhost:3000/statements/create_from_box?token=user2&&pulse=643&&time_of_measure=2014-12-24T10:46:33.599&&power=55
 
-  # create_table "device_types", force: true do |t|
-  #   t.string   "type"
-  #   t.float    "avg_daily_consumption"
-  #   t.float
-  #   t.float    "avg_yearly_consumption"
-  #   t.datetime "created_at"
-  #   t.datetime "updated_at"
-  # end
 
   # create_table "devices", force: true do |t|
   #   t.string   "name"

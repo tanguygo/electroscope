@@ -1,0 +1,22 @@
+.fullscreen {
+  position: fixed;
+  width: 100%;
+  top: 60px;
+  text-align: center;
+  z-index: 10;
+
+  .alert {
+    width: 60%;
+    margin: auto;
+    font-size: 1.1em;
+    &.alert-info {
+      background-color: rgba(217,237,247,0.9);
+      border-color: #bce8f1;
+      color: #31708f;
+    }
+    &.alert-warning {
+      background-color: rgba(252,248,227,0.9);
+      border-color: #faebcc;
+    }
+  }
+}
