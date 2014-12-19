@@ -19,7 +19,7 @@ class StatementsController < ApplicationController
       {"id"=>"Power","label"=>"Puissance","type"=>"number"}],
       "rows"=>[]}
     statements.each{|s|
-      row=[{'v'=>"#{s.time_of_measure.to_f+7*3600}"},{'v'=> "#{s.power}"}]
+      row=[{'v'=>"#{s.time_of_measure.to_f}"},{'v'=> "#{s.power}"}]
       points["rows"]<<{"c"=>row}
     }
     return points
@@ -40,7 +40,10 @@ class StatementsController < ApplicationController
 
   def create_from_box
     @box_session.treat_impulse(statement_params)
-    redirect_to root_path
+    render :json => {
+          :status => :ok,
+          :message => "Added statement successfully !"
+        }.to_json
   end
 
   private
