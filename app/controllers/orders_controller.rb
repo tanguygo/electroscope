@@ -24,6 +24,7 @@ class OrdersController < ApplicationController
           render :new, alert: @order.errors.full_messages.join('-')
         end
       else
+        @order=Order.new
         render :new, alert: @user.errors.full_messages.join('-')
       end
     end
