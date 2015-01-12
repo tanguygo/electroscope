@@ -13,6 +13,7 @@ class BoxSessionsController < ApplicationController
   end
 
   def new
+    # Espace entre, cohérence.
     @box_session=BoxSession.new()
     @box=Box.new()
   end
@@ -20,6 +21,7 @@ class BoxSessionsController < ApplicationController
   private
 
   def set_box
+    # mettre sur 2 lignes, toujours privilégier la lisibilité
     if (@box = Box.find_by_internal_ref(box_params[:internal_ref])).nil?
       flash[:alert] = "Le code d'activation n'a pas été reconnu."
       redirect_to activation_path

@@ -13,6 +13,7 @@ class Flat < ActiveRecord::Base
     self.devices.each do |d|
       total_conso += d.device_type.avg_yearly_consumption
     end
+    # 1000 -> constante
     total_conso.to_i / 1000 # pour kWh
   end
 

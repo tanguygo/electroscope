@@ -4,6 +4,7 @@ class Box < ActiveRecord::Base
   has_many :sponsorships
 
   def user
+    # return useless, pas besoin
     return self.box_sessions.last.user
   end
 
